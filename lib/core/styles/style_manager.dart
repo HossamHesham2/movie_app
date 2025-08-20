@@ -11,6 +11,7 @@ class StyleManager {
   static Color yellowF6 = Color(0xFFF6BD00);
   static Color yellowFB = Color(0xFFFFBB3B);
   static Color redF8 = Color(0xFFE82626);
+  static Color transparent = Colors.transparent;
 
   // Fonts weight
   static FontWeight regular = FontWeight.w400;
@@ -46,6 +47,13 @@ class StyleManager {
   );
   static TextStyle regular16 = GoogleFonts.roboto(
     fontSize: size16,
+    fontWeight: regular,
+  );
+  static TextStyle regular15 = GoogleFonts.roboto(
+    fontSize: size15,
+    fontWeight: regular,
+  );static TextStyle regular14 = GoogleFonts.roboto(
+    fontSize: size14,
     fontWeight: regular,
   );
 }

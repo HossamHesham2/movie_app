@@ -12,3 +12,7 @@ class PngManager {
   static const String availableNow = "assets/images/available_now.png";
   static const String watchNow = "assets/images/watch_now.png";
 }
+class SvgsManager{
+  static const String usFlag = "assets/svgs/us_flag.svg";
+  static const String egFlag = "assets/svgs/eg_flag.svg";
+}
