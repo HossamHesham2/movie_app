@@ -129,4 +129,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get poster5_title => 'Start Watching Now';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get ok => 'Ok';
 }

@@ -130,4 +130,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get poster5_title => 'ابدأ المشاهدة الآن';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get ok => 'حسنا';
 }

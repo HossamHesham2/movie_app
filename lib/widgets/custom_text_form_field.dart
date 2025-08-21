@@ -34,6 +34,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       validator: validator,
       obscureText: obscureText,
+
       style: StyleManager.regular16.copyWith(color: StyleManager.white),
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
@@ -49,13 +50,21 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
+          borderSide: BorderSide(color: StyleManager.black28),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
+          borderSide: BorderSide(color: StyleManager.black28),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15.r),
+          borderSide: BorderSide(color: StyleManager.black28),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
+          borderSide: BorderSide(color: StyleManager.redF8),
         ),
+        errorStyle: StyleManager.regular14.copyWith(color: StyleManager.redF8),
       ),
     );
   }

@@ -37,5 +37,7 @@
   "poster3_description": "Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.",
   "poster4_title": "Rate, Review, and Learn",
   "poster4_description": "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
-  "poster5_title": "Start Watching Now"
+  "poster5_title": "Start Watching Now",
+  "error": "Error",
+  "ok": "Ok"
 }
