@@ -11,6 +11,7 @@ class StyleManager {
   static Color yellowF6 = Color(0xFFF6BD00);
   static Color yellowFB = Color(0xFFFFBB3B);
   static Color redF8 = Color(0xFFE82626);
+  static Color transparent = Colors.transparent;
 
   // Fonts weight
   static FontWeight regular = FontWeight.w400;
@@ -28,24 +29,32 @@ class StyleManager {
 
   // Google Font Styles
 
-  static TextStyle bold36 = GoogleFonts.roboto(
+  static TextStyle bold36 = GoogleFonts.inter(
     fontSize: size36,
     fontWeight: bold,
   );
-  static TextStyle bold24 = GoogleFonts.roboto(
+  static TextStyle bold24 = GoogleFonts.inter(
     fontSize: size24,
     fontWeight: bold,
   );
-  static TextStyle bold20 = GoogleFonts.roboto(
+  static TextStyle bold20 = GoogleFonts.inter(
     fontSize: size20,
     fontWeight: bold,
   );
-  static TextStyle regular20 = GoogleFonts.roboto(
+  static TextStyle regular20 = GoogleFonts.inter(
     fontSize: size20,
     fontWeight: regular,
   );
-  static TextStyle regular16 = GoogleFonts.roboto(
+  static TextStyle regular16 = GoogleFonts.inter(
     fontSize: size16,
+    fontWeight: regular,
+  );
+  static TextStyle regular15 = GoogleFonts.inter(
+    fontSize: size15,
+    fontWeight: regular,
+  );
+  static TextStyle regular14 = GoogleFonts.inter(
+    fontSize: size14,
     fontWeight: regular,
   );
 }
