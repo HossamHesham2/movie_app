@@ -3,6 +3,7 @@
   "password": "Password",
   "forget_password": "Forget Password ?",
   "login": "Login",
+  "logout": "Logout",
   "dont_have_account": "Don’t Have Account ?",
   "create_one": "Create One",
   "or": "OR",
@@ -42,5 +43,10 @@
   "ok": "Ok",
   "register_successfully": "Register successfully",
   "login_successfully": "Login successfully",
-  "go": "Go"
+  "logout_successfully": "Logout successfully",
+  "go": "Go",
+  "exit": "Exit",
+  "history": "History",
+  "wish_list": "Wish List",
+  "edit_profile": "Edit Profile"
 }

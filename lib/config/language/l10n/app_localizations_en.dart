@@ -21,6 +21,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get logout => 'Logout';
+
+  @override
   String get dont_have_account => 'Don’t Have Account ?';
 
   @override
@@ -143,5 +146,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_successfully => 'Login successfully';
 
   @override
+  String get logout_successfully => 'Logout successfully';
+
+  @override
   String get go => 'Go';
+
+  @override
+  String get exit => 'Exit';
+
+  @override
+  String get history => 'History';
+
+  @override
+  String get wish_list => 'Wish List';
+
+  @override
+  String get edit_profile => 'Edit Profile';
 }

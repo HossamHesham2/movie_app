@@ -122,6 +122,12 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
   /// No description provided for @dont_have_account.
   ///
   /// In en, this message translates to:
@@ -356,11 +362,41 @@ abstract class AppLocalizations {
   /// **'Login successfully'**
   String get login_successfully;
 
+  /// No description provided for @logout_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout successfully'**
+  String get logout_successfully;
+
   /// No description provided for @go.
   ///
   /// In en, this message translates to:
   /// **'Go'**
   String get go;
+
+  /// No description provided for @exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get exit;
+
+  /// No description provided for @history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get history;
+
+  /// No description provided for @wish_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Wish List'**
+  String get wish_list;
+
+  /// No description provided for @edit_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
 }
 
 class _AppLocalizationsDelegate

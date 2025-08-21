@@ -26,10 +26,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         height: 60.h,
         decoration: BoxDecoration(
           color: StyleManager.black28,
-          borderRadius: BorderRadius.circular(24.r),
+          borderRadius: BorderRadius.circular(16.r),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GestureDetector(
               onTap: () {

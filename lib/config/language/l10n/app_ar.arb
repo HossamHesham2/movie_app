@@ -42,5 +42,11 @@
   "ok": "حسنا",
   "register_successfully": "تم إنشاء الحساب بنجاح",
   "login_successfully": "تم التسجيل بنجاح",
-  "go": "اذهب"
+  "logout_successfully": "تم تسجيل الخروج بنجاح",
+  "logout": "تسجيل الخروج",
+  "go": "اذهب",
+  "exit": "خروج",
+  "history": "السجل",
+  "wish_list": "قائمة الرغبات",
+  "edit_profile": "تعديل الملف الشخصي"
 }

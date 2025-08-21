@@ -21,6 +21,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
   String get dont_have_account => 'ليس لديك حساب؟';
 
   @override
@@ -144,5 +147,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_successfully => 'تم التسجيل بنجاح';
 
   @override
+  String get logout_successfully => 'تم تسجيل الخروج بنجاح';
+
+  @override
   String get go => 'اذهب';
+
+  @override
+  String get exit => 'خروج';
+
+  @override
+  String get history => 'السجل';
+
+  @override
+  String get wish_list => 'قائمة الرغبات';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
 }
