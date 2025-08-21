@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class StyleManager {
   // Colors
   static Color black12 = Color(0xFF121312);
+  static Color black21 = Color(0xFF212121);
   static Color black28 = Color(0xFF282A28);
   static Color white = Color(0xFFFFFFFF);
   static Color green57 = Color(0xFF57AA53);

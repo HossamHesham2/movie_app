@@ -213,7 +213,7 @@ class _LoginViewState extends State<LoginView> {
                       // TODO : SignIn With Google Button
                       CustomElevatedButton(
                         text: context.appLocalizations!.login_with_google,
-                        widget: Icon(
+                        prefixWidget: Icon(
                           FontAwesomeIcons.google,
                           color: StyleManager.black28,
                           size: 25.sp,

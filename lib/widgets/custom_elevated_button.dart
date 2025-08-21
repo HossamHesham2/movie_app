@@ -10,7 +10,8 @@ class CustomElevatedButton extends StatelessWidget {
   final Color textColor;
 
   final String text;
-  final Widget? widget;
+  final Widget? prefixWidget;
+  final Widget? suffixWidget;
 
   const CustomElevatedButton({
     super.key,
@@ -19,7 +20,8 @@ class CustomElevatedButton extends StatelessWidget {
     required this.borderColor,
     required this.backgroundColor,
     required this.textColor,
-    this.widget,
+    this.prefixWidget,
+    this.suffixWidget,
   });
 
   @override
@@ -40,12 +42,15 @@ class CustomElevatedButton extends StatelessWidget {
           spacing: 10.w,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (context.isEnglish) ?widget,
+            if (context.isEnglish) ?prefixWidget,
+            if (context.isArabic) ?suffixWidget,
+
             Text(
               text,
               style: StyleManager.regular20.copyWith(color: textColor),
             ),
-            if (context.isArabic) ?widget,
+            if (context.isArabic) ?prefixWidget,
+            if (context.isEnglish) ?suffixWidget,
           ],
         ),
       ),

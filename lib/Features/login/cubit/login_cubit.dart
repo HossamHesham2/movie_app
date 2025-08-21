@@ -47,6 +47,8 @@ class LoginCubit extends Cubit<LoginState> {
         prefs.setBool(ConstantsManager.ISLOGGEDIN_KEY, true);
         print("token : $token");
         emit(LoginSuccess(user.uid));
+        emailController.clear();
+        passwordController.clear();
         return true;
       } else {
         emit(LoginFailure('User not found.'));
