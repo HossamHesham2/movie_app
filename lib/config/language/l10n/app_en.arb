@@ -39,5 +39,8 @@
   "poster4_description": "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
   "poster5_title": "Start Watching Now",
   "error": "Error",
-  "ok": "Ok"
+  "ok": "Ok",
+  "register_successfully": "Register successfully",
+  "login_successfully": "Login successfully",
+  "go": "Go"
 }

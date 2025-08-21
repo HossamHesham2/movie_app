@@ -22,4 +22,8 @@ class PngManager {
 class SvgsManager {
   static const String usFlag = "assets/svgs/us_flag.svg";
   static const String egFlag = "assets/svgs/eg_flag.svg";
+  static const String homeIcon = "assets/svgs/home_icon.svg";
+  static const String searchIcon = "assets/svgs/search_icon.svg";
+  static const String browseIcon = "assets/svgs/browse_icon.svg";
+  static const String profileIcon = "assets/svgs/profile_icon.svg";
 }

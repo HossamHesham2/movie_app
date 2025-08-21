@@ -343,6 +343,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ok'**
   String get ok;
+
+  /// No description provided for @register_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Register successfully'**
+  String get register_successfully;
+
+  /// No description provided for @login_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successfully'**
+  String get login_successfully;
+
+  /// No description provided for @go.
+  ///
+  /// In en, this message translates to:
+  /// **'Go'**
+  String get go;
 }
 
 class _AppLocalizationsDelegate

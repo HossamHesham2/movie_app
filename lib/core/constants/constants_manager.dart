@@ -1,7 +1,7 @@
 import 'package:movie_app/core/assets/assets_manager.dart';
 
 class ConstantsManager {
-  static List<String> avatarsList = [
+  static const List<String> avatarsList = [
     PngManager.avatar1,
     PngManager.avatar2,
     PngManager.avatar3,
@@ -12,4 +12,6 @@ class ConstantsManager {
     PngManager.avatar8,
     PngManager.avatar9,
   ];
+  static const String TOKEN_KEY = "token";
+  static const String ISLOGGEDIN_KEY = "isLoggedIn";
 }

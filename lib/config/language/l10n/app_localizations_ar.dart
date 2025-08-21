@@ -136,4 +136,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ok => 'حسنا';
+
+  @override
+  String get register_successfully => 'تم إنشاء الحساب بنجاح';
+
+  @override
+  String get login_successfully => 'تم التسجيل بنجاح';
+
+  @override
+  String get go => 'اذهب';
 }

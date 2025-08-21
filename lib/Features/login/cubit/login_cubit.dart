@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:movie_app/Features/login/data/repositories/login_repository.dart';
+import 'package:movie_app/core/constants/constants_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_state.dart';
 
@@ -22,11 +24,13 @@ class LoginCubit extends Cubit<LoginState> {
   static LoginCubit get(BuildContext context) =>
       BlocProvider.of<LoginCubit>(context);
 
-  Future<void> login() async {
+  Future<bool> login() async {
+    final prefs = await SharedPreferences.getInstance();
+
     if (!formKey.currentState!.validate()) {
       autovalidateMode = AutovalidateMode.always;
       emit(LoginValidationError());
-      return;
+      return true;
     }
 
     emit(LoginLoading());
@@ -38,14 +42,22 @@ class LoginCubit extends Cubit<LoginState> {
       );
 
       if (user != null) {
+        String? token = await user.getIdToken(true);
+        prefs.setString(ConstantsManager.TOKEN_KEY, token!);
+        prefs.setBool(ConstantsManager.ISLOGGEDIN_KEY, true);
+        print("token : $token");
         emit(LoginSuccess(user.uid));
+        return true;
       } else {
         emit(LoginFailure('User not found.'));
+        return false;
       }
     } on FirebaseAuthException catch (e) {
       emit(LoginFailure(_getErrorMessage(e)));
+      return false;
     } catch (e) {
       emit(LoginFailure('Unexpected error: ${e.toString()}'));
+      return false;
     }
   }
 
