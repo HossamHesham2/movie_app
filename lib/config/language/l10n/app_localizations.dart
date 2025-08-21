@@ -247,6 +247,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Passwords do not match'**
   String get passwords_not_match;
+
+  /// No description provided for @find_next_favorite_movie.
+  ///
+  /// In en, this message translates to:
+  /// **'Find Your Next Favorite Movie Here'**
+  String get find_next_favorite_movie;
+
+  /// No description provided for @movie_library_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Get access to a huge library of movies to suit all tastes. You will surely like it.'**
+  String get movie_library_description;
+
+  /// No description provided for @explore_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Now'**
+  String get explore_now;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @poster1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover Movies'**
+  String get poster1_title;
+
+  /// No description provided for @poster1_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.'**
+  String get poster1_description;
+
+  /// No description provided for @poster2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore All Genres'**
+  String get poster2_title;
+
+  /// No description provided for @poster2_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.'**
+  String get poster2_description;
+
+  /// No description provided for @poster3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Watch Lists'**
+  String get poster3_title;
+
+  /// No description provided for @poster3_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.'**
+  String get poster3_description;
+
+  /// No description provided for @poster4_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate, Review, and Learn'**
+  String get poster4_title;
+
+  /// No description provided for @poster4_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.'**
+  String get poster4_description;
+
+  /// No description provided for @poster5_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Watching Now'**
+  String get poster5_title;
 }
 
 class _AppLocalizationsDelegate

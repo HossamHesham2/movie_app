@@ -82,4 +82,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwords_not_match => 'Passwords do not match';
+
+  @override
+  String get find_next_favorite_movie => 'Find Your Next Favorite Movie Here';
+
+  @override
+  String get movie_library_description =>
+      'Get access to a huge library of movies to suit all tastes. You will surely like it.';
+
+  @override
+  String get explore_now => 'Explore Now';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get poster1_title => 'Discover Movies';
+
+  @override
+  String get poster1_description =>
+      'Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.';
+
+  @override
+  String get poster2_title => 'Explore All Genres';
+
+  @override
+  String get poster2_description =>
+      'Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.';
+
+  @override
+  String get poster3_title => 'Create Watch Lists';
+
+  @override
+  String get poster3_description =>
+      'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.';
+
+  @override
+  String get poster4_title => 'Rate, Review, and Learn';
+
+  @override
+  String get poster4_description =>
+      'Share your thoughts on the movies you\'ve watched. Dive deep into film details and help others discover great movies with your reviews.';
+
+  @override
+  String get poster5_title => 'Start Watching Now';
 }

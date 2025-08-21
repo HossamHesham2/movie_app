@@ -83,4 +83,51 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get passwords_not_match => 'كلمتا المرور غير متطابقتين';
+
+  @override
+  String get find_next_favorite_movie => 'اعثر على فيلمك المفضل التالي هنا';
+
+  @override
+  String get movie_library_description =>
+      'احصل على وصول إلى مكتبة ضخمة من الأفلام لتناسب جميع الأذواق. بالتأكيد ستعجبك.';
+
+  @override
+  String get explore_now => 'استكشف الآن';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get back => 'السابق';
+
+  @override
+  String get poster1_title => 'اكتشف الأفلام';
+
+  @override
+  String get poster1_description =>
+      'استكشف مجموعة واسعة من الأفلام بجميع أنواعها وجودتها. ابحث عن فيلمك المفضل بسهولة.';
+
+  @override
+  String get poster2_title => 'استكشف جميع الأنواع';
+
+  @override
+  String get poster2_description =>
+      'اكتشف أفلامًا من جميع الأنواع، بجميع الجودة المتاحة. شاهد شيئًا جديدًا ومثيرًا كل يوم.';
+
+  @override
+  String get poster3_title => 'إنشاء قوائم المراقبة';
+
+  @override
+  String get poster3_description =>
+      'احفظ الأفلام في قائمة المشاهدة لمتابعة ما ترغب بمشاهدته لاحقًا. استمتع بأفلام متنوعة الجودة والأنواع.';
+
+  @override
+  String get poster4_title => 'قم بالتقييم والمراجعة والتعلم';
+
+  @override
+  String get poster4_description =>
+      'شاركنا رأيك في الأفلام التي شاهدتها. تعمق في تفاصيل الفيلم، وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.';
+
+  @override
+  String get poster5_title => 'ابدأ المشاهدة الآن';
 }

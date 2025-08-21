@@ -29,30 +29,31 @@ class StyleManager {
 
   // Google Font Styles
 
-  static TextStyle bold36 = GoogleFonts.roboto(
+  static TextStyle bold36 = GoogleFonts.inter(
     fontSize: size36,
     fontWeight: bold,
   );
-  static TextStyle bold24 = GoogleFonts.roboto(
+  static TextStyle bold24 = GoogleFonts.inter(
     fontSize: size24,
     fontWeight: bold,
   );
-  static TextStyle bold20 = GoogleFonts.roboto(
+  static TextStyle bold20 = GoogleFonts.inter(
     fontSize: size20,
     fontWeight: bold,
   );
-  static TextStyle regular20 = GoogleFonts.roboto(
+  static TextStyle regular20 = GoogleFonts.inter(
     fontSize: size20,
     fontWeight: regular,
   );
-  static TextStyle regular16 = GoogleFonts.roboto(
+  static TextStyle regular16 = GoogleFonts.inter(
     fontSize: size16,
     fontWeight: regular,
   );
-  static TextStyle regular15 = GoogleFonts.roboto(
+  static TextStyle regular15 = GoogleFonts.inter(
     fontSize: size15,
     fontWeight: regular,
-  );static TextStyle regular14 = GoogleFonts.roboto(
+  );
+  static TextStyle regular14 = GoogleFonts.inter(
     fontSize: size14,
     fontWeight: regular,
   );
