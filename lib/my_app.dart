@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/core/routes/routes_manager.dart';
+import 'package:movie_app/config/language/l10n/app_localizations.dart';
+import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 
-import 'config/l10n/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

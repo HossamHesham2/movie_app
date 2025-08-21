@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movie_app/Views/widgets/custom_bottom_auth.dart';
-import 'package:movie_app/Views/widgets/custom_elevated_button.dart';
-import 'package:movie_app/Views/widgets/custom_language_toggle.dart';
-import 'package:movie_app/Views/widgets/custom_text_button.dart';
-import 'package:movie_app/Views/widgets/custom_text_form_field.dart';
+import 'package:movie_app/config/routes/routes_manager.dart';
+import 'package:movie_app/widgets/custom_bottom_auth.dart';
+import 'package:movie_app/widgets/custom_elevated_button.dart';
+import 'package:movie_app/widgets/custom_language_toggle.dart';
+import 'package:movie_app/widgets/custom_text_button.dart';
+import 'package:movie_app/widgets/custom_text_form_field.dart';
 import 'package:movie_app/core/assets/assets_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
@@ -31,14 +32,18 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: 65.h),
             Image.asset(PngManager.logo),
             SizedBox(height: 70.h),
+            // TODO : Email Field
             CustomTextFormField(
+              keyboardType: TextInputType.emailAddress,
               prefixIcon: Icon(Icons.email),
               hint: context.appLocalizations!.email,
               obscureText: false,
             ),
             SizedBox(height: 20.h),
+            // TODO : Password Field
             CustomTextFormField(
               prefixIcon: Icon(Icons.lock),
+              keyboardType: TextInputType.visiblePassword,
               suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
@@ -53,6 +58,7 @@ class _LoginViewState extends State<LoginView> {
               obscureText: obscureTextPassword,
             ),
             SizedBox(height: 20.h),
+            // TODO : Forget Password Text Button
             Align(
               alignment: context.isEnglish
                   ? Alignment.centerRight
@@ -63,7 +69,7 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             SizedBox(height: 10.h),
-
+            // TODO : Login Button
             CustomElevatedButton(
               text: context.appLocalizations!.login,
               backgroundColor: StyleManager.yellowF6,
@@ -72,10 +78,14 @@ class _LoginViewState extends State<LoginView> {
               onPressed: () {},
             ),
             SizedBox(height: 20.h),
+            // TODO : Register Navigator
             CustomBottomAuth(
               title: context.appLocalizations!.dont_have_account,
               text: context.appLocalizations!.create_one,
-              onPressed: () {},
+              onPressed: () {
+                print("object");
+                Navigator.pushNamed(context, RoutesManager.registerView);
+              },
             ),
             SizedBox(height: 20.h),
 
@@ -107,6 +117,7 @@ class _LoginViewState extends State<LoginView> {
               ],
             ),
             SizedBox(height: 20.h),
+            // TODO : SignIn With Google Button
             CustomElevatedButton(
               text: context.appLocalizations!.login_with_google,
               widget: Icon(
@@ -120,7 +131,8 @@ class _LoginViewState extends State<LoginView> {
               onPressed: () {},
             ),
             SizedBox(height: 20.h),
-            CustomLanguageToggle()
+            // TODO : Language Toggle
+            CustomLanguageToggle(),
           ],
         ),
       ),

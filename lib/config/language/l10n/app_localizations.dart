@@ -145,6 +145,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login With Google'**
   String get login_with_google;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// No description provided for @avatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar'**
+  String get avatar;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirm_password;
+
+  /// No description provided for @phone_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phone_number;
+
+  /// No description provided for @create_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get create_account;
+
+  /// No description provided for @already_have_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already Have Account ?'**
+  String get already_have_account;
+
+  /// No description provided for @verify_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Email'**
+  String get verify_email;
+
+  /// No description provided for @email_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get email_required;
+
+  /// No description provided for @email_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get email_invalid;
+
+  /// No description provided for @password_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get password_required;
+
+  /// No description provided for @password_min_length.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get password_min_length;
+
+  /// No description provided for @name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get name_required;
+
+  /// No description provided for @phone_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required'**
+  String get phone_required;
+
+  /// No description provided for @phone_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone must be at 11 numbers'**
+  String get phone_invalid;
+
+  /// No description provided for @confirm_password_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password is required'**
+  String get confirm_password_required;
+
+  /// No description provided for @passwords_not_match.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwords_not_match;
 }
 
 class _AppLocalizationsDelegate

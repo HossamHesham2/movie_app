@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:movie_app/config/l10n/app_localizations.dart';
+import 'package:movie_app/config/language/l10n/app_localizations.dart';
 
 extension BuildContextExtension on BuildContext {
   AppLocalizations? get appLocalizations => AppLocalizations.of(this);
