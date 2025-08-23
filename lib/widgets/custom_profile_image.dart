@@ -16,7 +16,7 @@ class CustomProfileImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(child: Image.asset(imageProfile), radius: 50.r),
+        CircleAvatar(radius: 50.r, child: Image.asset(imageProfile)),
         SizedBox(height: 20.h),
         Text(
           name,
