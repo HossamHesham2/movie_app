@@ -12,6 +12,7 @@ class ConstantsManager {
     PngManager.avatar8,
     PngManager.avatar9,
   ];
-  static const String TOKEN_KEY = "token";
-  static const String ISLOGGEDIN_KEY = "isLoggedIn";
+  static const String tokenKey = "token";
+  static const String isLoggedInKey = "isLoggedIn";
+  static const String isSeenKey = "isSeenKey";
 }

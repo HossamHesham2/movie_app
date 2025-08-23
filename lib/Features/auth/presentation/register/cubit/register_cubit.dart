@@ -1,19 +1,18 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:movie_app/Features/register/data/repositories/register_repository.dart';
-import 'package:movie_app/core/models/user_model.dart';
+import 'package:movie_app/Features/auth/data/models/user_model.dart';
+import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
+import 'package:movie_app/core/helper/cash_helper.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  final RegisterRepository registerRepository;
+  final AuthRepository authRepository;
 
-  RegisterCubit(this.registerRepository) : super(RegisterInitial());
+  RegisterCubit(this.authRepository) : super(RegisterInitial());
   UserModel? userModel;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -21,7 +20,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final confirmPasswordController = TextEditingController();
   final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
   String? profileImage;
 
   static RegisterCubit get(BuildContext context) =>
@@ -34,13 +33,13 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Future<bool> register() async {
     if (!formKey.currentState!.validate()) {
-      autovalidateMode = AutovalidateMode.always;
+      autoValidateMode = AutovalidateMode.always;
       emit(RegisterValidationError());
     }
 
     emit(RegisterLoading());
     try {
-      final user = await registerRepository.register(
+      final user = await authRepository.register(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
@@ -48,16 +47,21 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterFailure('User registration failed.'));
         return false;
       }
+      String? token = await user.getIdToken(true);
       await user.updateDisplayName(nameController.text.trim());
       await user.updatePhotoURL(profileImage);
       await user.reload();
+      final currentUser = FirebaseAuth.instance.currentUser;
+      String? name = currentUser?.displayName;
       UserModel model = UserModel(
         id: user.uid,
-        name: user.displayName ?? "Guest",
+        name: name,
         email: user.email ?? "example@gm.com",
         phone: phoneController.text.trim(),
         profileImage: profileImage ?? 'assets/images/avatar1.png',
+        token: token ?? "token error",
       );
+      CashHelper.saveUser(userModel!);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)

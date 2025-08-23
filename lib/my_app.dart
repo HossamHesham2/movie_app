@@ -8,15 +8,28 @@ import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  Future<bool> isLoggedIn() async {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool? isLogged;
+  bool? isSeen;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _loadPrefs();
+  }
+
+  Future<void> _loadPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    final isLoggedIn =
-        prefs.getBool(ConstantsManager.ISLOGGEDIN_KEY) ??
-        false; // أو ConstantsManager.TOKEN_KEY
-    return isLoggedIn;
+    isLogged = prefs.getBool(ConstantsManager.isLoggedInKey) ?? false;
+    isSeen = prefs.getBool(ConstantsManager.isSeenKey) ?? false;
   }
 
   @override
@@ -27,28 +40,20 @@ class MyApp extends StatelessWidget {
       ensureScreenSize: true,
       child: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
-          return FutureBuilder(
-            future: isLoggedIn(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              final initialRoute = snapshot.data!
-                  ? RoutesManager.mainLayoutView
-                  : RoutesManager.onBoardingView;
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
-                supportedLocales: AppLocalizations.supportedLocales,
-                locale: state.locale,
-                darkTheme: ThemeData(
-                  scaffoldBackgroundColor: StyleManager.black12,
-                ),
-                themeMode: ThemeMode.dark,
-                onGenerateRoute: RoutesManager.getRoutes,
-                initialRoute: initialRoute,
-              );
-            },
+          final initialRoute = isLogged!
+              ? RoutesManager.mainLayoutView
+              : isSeen!
+              ? RoutesManager.loginView
+              : RoutesManager.onBoardingView;
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: state.locale,
+            darkTheme: ThemeData(scaffoldBackgroundColor: StyleManager.black12),
+            themeMode: ThemeMode.dark,
+            onGenerateRoute: RoutesManager.getRoutes,
+            initialRoute: initialRoute,
           );
         },
       ),

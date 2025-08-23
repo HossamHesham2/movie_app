@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/Features/onBoardingView/on_board_screen_4.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/assets/assets_manager.dart';
+import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoardScreen5 extends StatefulWidget {
   const OnBoardScreen5({super.key});
@@ -55,11 +57,13 @@ class _OnBoardScreen5State extends State<OnBoardScreen5> {
                     borderColor: StyleManager.yellowF6,
                     backgroundColor: StyleManager.yellowF6,
                     textColor: StyleManager.black28,
-                    onPressed: () {
+                    onPressed: () async {
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool(ConstantsManager.isSeenKey, true);
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         RoutesManager.loginView,
-                        (route) => false,
+                            (route) => false,
                       );
                     },
                   ),
@@ -76,7 +80,7 @@ class _OnBoardScreen5State extends State<OnBoardScreen5> {
                         CupertinoPageRoute(
                           builder: (context) => OnBoardScreen4(),
                         ),
-                        (route) => false,
+                            (route) => false,
                       );
                     },
                   ),

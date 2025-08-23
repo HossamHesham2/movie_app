@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/Features/register/cubit/register_cubit.dart';
+import 'package:movie_app/Features/auth/presentation/register/cubit/register_cubit.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 
 class CustomListViewAvatars extends StatefulWidget {

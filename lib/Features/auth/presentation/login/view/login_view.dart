@@ -2,34 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:movie_app/Features/register/cubit/register_cubit.dart';
+import 'package:movie_app/Features/auth/presentation/login/cubit/login_cubit.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/validators/validators_manager.dart';
-import 'package:movie_app/widgets/custom_bottom_auth.dart';
+import 'package:movie_app/Features/auth/presentation/widgets/custom_bottom_auth.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
-import 'package:movie_app/widgets/custom_language_toggle.dart';
-import 'package:movie_app/widgets/custom_list_view_avatars.dart';
-import 'package:movie_app/widgets/custom_text_button.dart';
+import 'package:movie_app/Features/auth/presentation/widgets/custom_language_toggle.dart';
+import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:movie_app/widgets/custom_text_form_field.dart';
+import 'package:movie_app/core/assets/assets_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _LoginViewState extends State<LoginView> {
   bool obscureTextPassword = true;
-  bool obscureTextConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterCubit, RegisterState>(
+    return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is RegisterFailure) {
+        if (state is LoginFailure) {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
@@ -39,7 +38,7 @@ class _RegisterViewState extends State<RegisterView> {
                 style: StyleManager.bold20.copyWith(color: StyleManager.white),
               ),
               content: Text(
-                state.errorMessage,
+                state.errMessage,
                 style: StyleManager.regular16.copyWith(
                   color: StyleManager.white,
                 ),
@@ -55,62 +54,39 @@ class _RegisterViewState extends State<RegisterView> {
         }
       },
       builder: (context, state) {
-        final registerCubit = RegisterCubit.get(context);
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
-            appBar: CustomAppBar(
-              title: context.appLocalizations!.register,
-              onBack: () => Navigator.pop(context),
-            ),
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
                 child: Form(
-                  key: registerCubit.formKey,
-                  autovalidateMode: registerCubit.autovalidateMode,
+                  autovalidateMode: LoginCubit.get(context).autoValidateMode,
+                  key: LoginCubit.get(context).formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 10.h),
-                      CustomListViewAvatars(),
-                      SizedBox(height: 20.h),
-                      // TODO: Name Field
+                      SizedBox(height: 65.h),
+                      Image.asset(PngManager.logo),
+                      SizedBox(height: 70.h),
+                      // TODO : Email Field
                       CustomTextFormField(
-                        prefixIcon: Icon(FontAwesomeIcons.idCard),
-                        controller: registerCubit.nameController,
-                        hint: context.appLocalizations!.name,
-                        obscureText: false,
-                        keyboardType: TextInputType.name,
-                        validator: (value) => ValidatorsManager.validateName(
-                          registerCubit.nameController.text,
-                          context,
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-                      // TODO: Email Field
-                      CustomTextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        controller: LoginCubit.get(context).emailController,
                         prefixIcon: Icon(Icons.email),
-                        controller: registerCubit.emailController,
                         hint: context.appLocalizations!.email,
                         obscureText: false,
-                        keyboardType: TextInputType.emailAddress,
                         validator: (value) => ValidatorsManager.validateEmail(
-                          registerCubit.emailController.text,
+                          LoginCubit.get(context).emailController.text,
                           context,
                         ),
                       ),
                       SizedBox(height: 20.h),
-                      // TODO: Password Field
+                      // TODO : Password Field
                       CustomTextFormField(
                         prefixIcon: Icon(Icons.lock),
-                        controller: registerCubit.passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        validator: (value) =>
-                            ValidatorsManager.validatePassword(
-                              registerCubit.passwordController.text,
-                              context,
-                            ),
+                        controller: LoginCubit.get(context).passwordController,
                         suffixIcon: IconButton(
                           onPressed: () {
                             setState(() {
@@ -125,69 +101,45 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                         hint: context.appLocalizations!.password,
                         obscureText: obscureTextPassword,
-                      ),
-                      SizedBox(height: 20.h),
-                      // TODO: Confirm Password Field
-                      CustomTextFormField(
-                        prefixIcon: Icon(Icons.lock),
-                        keyboardType: TextInputType.visiblePassword,
-                        controller: registerCubit.confirmPasswordController,
                         validator: (value) =>
-                            ValidatorsManager.validateConfirmPassword(
-                              registerCubit.confirmPasswordController.text,
-                              registerCubit.passwordController.text,
+                            ValidatorsManager.validatePassword(
+                              LoginCubit.get(context).passwordController.text,
                               context,
                             ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextConfirmPassword =
-                                  !obscureTextConfirmPassword;
-                            });
-                          },
-                          icon: Icon(
-                            obscureTextConfirmPassword
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                        ),
-                        hint: context.appLocalizations!.confirm_password,
-                        obscureText: obscureTextConfirmPassword,
                       ),
                       SizedBox(height: 20.h),
-                      // TODO: Phone Field
-                      CustomTextFormField(
-                        prefixIcon: Icon(FontAwesomeIcons.phone),
-                        keyboardType: TextInputType.phone,
-                        controller: registerCubit.phoneController,
-                        hint: context.appLocalizations!.phone_number,
-                        obscureText: false,
-                        validator: (value) => ValidatorsManager.validatePhone(
-                          registerCubit.phoneController.text,
-                          context,
+                      // TODO : Forget Password Text Button
+                      Align(
+                        alignment: context.isEnglish
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: CustomTextButton(
+                          text: context.appLocalizations!.forget_password,
+                          onPressed: () {},
                         ),
                       ),
-                      SizedBox(height: 20.h),
-                      // TODO: Register Button
-                      state is RegisterLoading
+                      SizedBox(height: 10.h),
+                      // TODO : Login Button
+                      state is LoginLoading
                           ? CircularProgressIndicator(
                               color: StyleManager.yellowFB,
                             )
                           : CustomElevatedButton(
-                              text: context.appLocalizations!.create_account,
+                              text: context.appLocalizations!.login,
                               backgroundColor: StyleManager.yellowF6,
                               borderColor: StyleManager.yellowF6,
                               textColor: StyleManager.black28,
                               onPressed: () async {
-                                final isRegistered = await registerCubit
-                                    .register();
-                                if (isRegistered) {
+                                final isLoggedIn = await LoginCubit.get(
+                                  context,
+                                ).login();
+                                if (isLoggedIn) {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
                                       backgroundColor: StyleManager.black12,
                                       title: Text(
-                                        context.appLocalizations!.register,
+                                        context.appLocalizations!.login,
                                         style: StyleManager.bold20.copyWith(
                                           color: StyleManager.white,
                                         ),
@@ -195,7 +147,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       content: Text(
                                         context
                                             .appLocalizations!
-                                            .register_successfully,
+                                            .login_successfully,
                                         style: StyleManager.regular16.copyWith(
                                           color: StyleManager.white,
                                         ),
@@ -206,7 +158,7 @@ class _RegisterViewState extends State<RegisterView> {
                                           onPressed: () =>
                                               Navigator.pushNamedAndRemoveUntil(
                                                 context,
-                                                RoutesManager.loginView,
+                                                RoutesManager.mainLayoutView,
                                                 (route) => false,
                                               ),
                                         ),
@@ -217,10 +169,58 @@ class _RegisterViewState extends State<RegisterView> {
                               },
                             ),
                       SizedBox(height: 20.h),
-                      // TODO : Login Navigator
+                      // TODO : Register Navigator
                       CustomBottomAuth(
                         title: context.appLocalizations!.dont_have_account,
-                        text: context.appLocalizations!.login,
+                        text: context.appLocalizations!.create_one,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            RoutesManager.registerView,
+                          );
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: StyleManager.yellowF6,
+                              thickness: 1,
+                              indent: 70.w,
+                              endIndent: 12.w,
+                            ),
+                          ),
+                          Text(
+                            context.appLocalizations!.or,
+                            style: StyleManager.regular15.copyWith(
+                              color: StyleManager.yellowF6,
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              color: StyleManager.yellowF6,
+                              thickness: 1,
+                              indent: 12.w,
+                              endIndent: 70.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20.h),
+                      // TODO : SignIn With Google Button
+                      CustomElevatedButton(
+                        text: context.appLocalizations!.login_with_google,
+                        prefixWidget: Icon(
+                          FontAwesomeIcons.google,
+                          color: StyleManager.black28,
+                          size: 25.sp,
+                        ),
+                        backgroundColor: StyleManager.yellowF6,
+                        borderColor: StyleManager.yellowF6,
+                        textColor: StyleManager.black28,
                         onPressed: () {},
                       ),
                       SizedBox(height: 20.h),
@@ -236,29 +236,4 @@ class _RegisterViewState extends State<RegisterView> {
       },
     );
   }
-}
-
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  final VoidCallback onBack;
-
-  const CustomAppBar({Key? key, required this.title, required this.onBack})
-    : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: StyleManager.transparent,
-      foregroundColor: StyleManager.yellowF6,
-      title: Text(title),
-      centerTitle: true,
-      leading: IconButton(
-        onPressed: onBack,
-        icon: const Icon(Icons.arrow_back),
-      ),
-    );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
