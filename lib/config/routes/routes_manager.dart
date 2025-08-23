@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movie_app/Features/auth/presentation/forget_password/view/forget_password_view.dart';
 import 'package:movie_app/Features/auth/presentation/login/view/login_view.dart';
 import 'package:movie_app/Features/auth/presentation/register/view/register_view.dart';
 import 'package:movie_app/Features/browse/view/browse_view.dart';
@@ -12,6 +13,7 @@ class RoutesManager {
   static const String mainLayoutView = "/";
   static const String loginView = "/loginView";
   static const String registerView = "/registerView";
+  static const String forgetPasswordView = "/forgetPasswordView";
   static const String onBoardingView = "/onBoardingScreen";
   static const String homeView = "/homeView";
   static const String searchView = "/searchView";
@@ -26,6 +28,8 @@ class RoutesManager {
         return CupertinoPageRoute(builder: (context) => LoginView());
       case registerView:
         return CupertinoPageRoute(builder: (context) => RegisterView());
+      case forgetPasswordView:
+        return CupertinoPageRoute(builder: (context) => ForgetPasswordView());
       case onBoardingView:
         return CupertinoPageRoute(builder: (context) => OnBoardingView());
       case homeView:

@@ -163,4 +163,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get sent_mail => 'تم إرسال البريد';
 }
