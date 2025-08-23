@@ -33,6 +33,7 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      await credential.user?.sendEmailVerification();
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -44,5 +45,18 @@ class AuthRepositoryImpl implements AuthRepository {
       throw Exception(e);
     }
     return null;
+  }
+
+  @override
+  Future<void> forgetPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(
+        e.message ?? 'An error occurred while resetting password',
+      );
+    } catch (e) {
+      throw Exception('Unexpected error: $e');
+    }
   }
 }

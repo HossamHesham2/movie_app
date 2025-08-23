@@ -397,6 +397,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit Profile'**
   String get edit_profile;
+
+  /// No description provided for @sent_mail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent Mail'**
+  String get sent_mail;
 }
 
 class _AppLocalizationsDelegate

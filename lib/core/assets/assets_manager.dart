@@ -17,6 +17,7 @@ class PngManager {
   static const String poster3 = "assets/images/poster3.png";
   static const String poster4 = "assets/images/poster4.png";
   static const String poster5 = "assets/images/poster5.png";
+  static const String forgetPasswordBg = "assets/images/forget_password_bg.png";
 }
 
 class SvgsManager {

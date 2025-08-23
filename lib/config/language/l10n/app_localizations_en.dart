@@ -162,4 +162,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get edit_profile => 'Edit Profile';
+
+  @override
+  String get sent_mail => 'Sent Mail';
 }

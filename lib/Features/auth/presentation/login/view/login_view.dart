@@ -115,7 +115,12 @@ class _LoginViewState extends State<LoginView> {
                             : Alignment.centerLeft,
                         child: CustomTextButton(
                           text: context.appLocalizations!.forget_password,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              RoutesManager.forgetPasswordView,
+                            );
+                          },
                         ),
                       ),
                       SizedBox(height: 10.h),
