@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:movie_app/Features/auth/presentation/forget_password/view/forget_password_view.dart';
 import 'package:movie_app/Features/auth/presentation/login/view/login_view.dart';
 import 'package:movie_app/Features/auth/presentation/register/view/register_view.dart';
-import 'package:movie_app/Features/browse/view/browse_view.dart';
-import 'package:movie_app/Features/home/view/home_view.dart';
-import 'package:movie_app/Features/main_layout/main_layout_view.dart';
+import 'package:movie_app/Features/movie/browse/view/browse_view.dart';
+import 'package:movie_app/Features/movie/home/view/home_view.dart';
+import 'package:movie_app/Features/movie/main_layout/main_layout_view.dart';
+import 'package:movie_app/Features/movie/profile/presentation/view/profile_view.dart';
+import 'package:movie_app/Features/movie/search/view/search_view.dart';
 import 'package:movie_app/Features/onBoardingView/on_boarding_view.dart';
-import 'package:movie_app/Features/profile/presentation/view/profile_view.dart';
-import 'package:movie_app/Features/search/view/search_view.dart';
 
 class RoutesManager {
   static const String mainLayoutView = "/";
