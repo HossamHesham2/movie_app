@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/Features/auth/data/models/user_model.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
-import 'package:movie_app/core/helper/cash_helper.dart';
+import 'package:movie_app/core/database/cash/cashe_helper.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final AuthRepository authRepository;
+  final String boxName = "users";
+  final String key = "userKey";
 
   RegisterCubit(this.authRepository) : super(RegisterInitial());
   UserModel? userModel;
@@ -61,7 +63,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         profileImage: profileImage ?? 'assets/images/avatar1.png',
         token: token ?? "token error",
       );
-      CashHelper.saveUser(userModel!);
+      CacheHelper.saveData(boxName: boxName, key: key, value: model);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
-import 'package:movie_app/core/helper/cash_helper.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
 import 'package:movie_app/widgets/custom_history.dart';
@@ -83,7 +82,7 @@ class _ProfileViewState extends State<ProfileView> {
                           textColor: StyleManager.white,
                           onPressed: () async {
                             final prefs = await SharedPreferences.getInstance();
-                            CashHelper.delete();
+
                             await prefs.setBool(
                               ConstantsManager.isLoggedInKey,
                               false,
