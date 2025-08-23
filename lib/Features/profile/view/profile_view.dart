@@ -2,14 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
-import 'package:movie_app/core/assets/assets_manager.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
+import 'package:movie_app/core/helper/cash_helper.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
 import 'package:movie_app/widgets/custom_history.dart';
 import 'package:movie_app/widgets/custom_profile_image.dart';
-import 'package:movie_app/widgets/custom_text_button.dart';
+import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileView extends StatefulWidget {
@@ -23,7 +23,6 @@ class _ProfileViewState extends State<ProfileView> {
   final user = FirebaseAuth.instance.currentUser;
 
   // Name, email address, and profile photo URL
-  late final name = user?.displayName ?? "";
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +39,9 @@ class _ProfileViewState extends State<ProfileView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomProfileImage(
-                        name: name,
-                        imageProfile: PngManager.avatar1,
+                        name: user?.displayName ?? "Guest",
+                        imageProfile:
+                            user?.photoURL ?? "assets/images/avata1.png",
                       ),
                       Expanded(
                         child: CustomHistory(
@@ -83,8 +83,9 @@ class _ProfileViewState extends State<ProfileView> {
                           textColor: StyleManager.white,
                           onPressed: () async {
                             final prefs = await SharedPreferences.getInstance();
+                            CashHelper.delete();
                             await prefs.setBool(
-                              ConstantsManager.ISLOGGEDIN_KEY,
+                              ConstantsManager.isLoggedInKey,
                               false,
                             );
                             await FirebaseAuth.instance.signOut();

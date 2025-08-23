@@ -1,36 +1,36 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/Features/login/data/repositories/login_repository.dart';
-import 'package:movie_app/Features/register/cubit/register_cubit.dart';
-import 'package:movie_app/Features/register/data/repositories/register_repository.dart';
-import 'package:movie_app/config/language/l10n/cubit/language_cubit.dart';
-import 'package:movie_app/firebase_options.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:movie_app/Features/auth/data/models/user_model.dart';
+import 'package:movie_app/Features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:movie_app/Features/auth/presentation/login/cubit/login_cubit.dart';
+import 'package:movie_app/Features/auth/presentation/register/cubit/register_cubit.dart';
 import 'package:movie_app/my_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Features/login/cubit/login_cubit.dart';
+import 'config/language/l10n/cubit/language_cubit.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize Firebase with platform options
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  // Initialize language cubit after Firebase
+  await Hive.initFlutter();
   final languageCubit = LanguageCubit();
   await SharedPreferences.getInstance();
-
   await languageCubit.setInitialLanguage();
+  Hive.registerAdapter(UserModelAdapter());
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<LanguageCubit>(create: (context) => languageCubit),
 
         BlocProvider<LoginCubit>(
-          create: (context) => LoginCubit(LoginRepository()),
+          create: (context) => LoginCubit(AuthRepositoryImpl()),
         ),
         BlocProvider<RegisterCubit>(
-          create: (context) => RegisterCubit(RegisterRepository()),
+          create: (context) => RegisterCubit(AuthRepositoryImpl()),
         ),
       ],
       child: MyApp(),

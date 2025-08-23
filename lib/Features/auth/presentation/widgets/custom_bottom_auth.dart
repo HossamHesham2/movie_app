@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/widgets/custom_text_button.dart';
+import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:movie_app/core/styles/style_manager.dart';
 
 class CustomBottomAuth extends StatelessWidget {

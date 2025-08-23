@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:movie_app/Features/auth/presentation/login/view/login_view.dart';
+import 'package:movie_app/Features/auth/presentation/register/view/register_view.dart';
 import 'package:movie_app/Features/browse/view/browse_view.dart';
 import 'package:movie_app/Features/home/view/home_view.dart';
-import 'package:movie_app/Features/login/view/login_view.dart';
 import 'package:movie_app/Features/main_layout/main_layout_view.dart';
 import 'package:movie_app/Features/onBoardingView/on_boarding_view.dart';
 import 'package:movie_app/Features/profile/view/profile_view.dart';
-import 'package:movie_app/Features/register/view/register_view.dart';
 import 'package:movie_app/Features/search/view/search_view.dart';
 
 class RoutesManager {
