@@ -19,7 +19,6 @@ void main() async {
   final languageCubit = LanguageCubit();
   await SharedPreferences.getInstance();
   await languageCubit.setInitialLanguage();
-  Hive.registerAdapter(UserModelAdapter());
   runApp(
     MultiBlocProvider(
       providers: [
