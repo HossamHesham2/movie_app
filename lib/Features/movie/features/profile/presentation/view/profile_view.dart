@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/Features/movie/profile/presentation/widget/custom_tab_bar_text.dart';
+import 'package:movie_app/Features/movie/Features/profile/presentation/widget/custom_tab_bar_text.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';

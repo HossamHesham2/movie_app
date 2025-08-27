@@ -24,6 +24,12 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   bool obscureTextPassword = true;
   bool obscureTextConfirmPassword = true;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    RegisterCubit.get(context).formKey.currentState?.reset();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -221,7 +227,13 @@ class _RegisterViewState extends State<RegisterView> {
                       CustomBottomAuth(
                         title: context.appLocalizations!.dont_have_account,
                         text: context.appLocalizations!.login,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RoutesManager.loginView,
+                                (route) => false,
+                          );
+                        },
                       ),
                       SizedBox(height: 20.h),
                       // TODO : Language Toggle

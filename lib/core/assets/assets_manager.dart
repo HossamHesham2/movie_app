@@ -27,4 +27,5 @@ class SvgsManager {
   static const String searchIcon = "assets/svgs/search_icon.svg";
   static const String browseIcon = "assets/svgs/browse_icon.svg";
   static const String profileIcon = "assets/svgs/profile_icon.svg";
+  static const String favIcon = "assets/svgs/fav_icon.svg";
 }

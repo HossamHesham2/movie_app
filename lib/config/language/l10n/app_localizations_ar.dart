@@ -166,4 +166,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sent_mail => 'تم إرسال البريد';
+
+  @override
+  String get action => 'أكشن';
+
+  @override
+  String get comedy => 'كوميديا';
+
+  @override
+  String get horror => 'رعب';
+
+  @override
+  String get see_more => 'أرني المزيد';
 }

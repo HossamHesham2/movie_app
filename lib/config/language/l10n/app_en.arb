@@ -49,5 +49,10 @@
   "history": "History",
   "wish_list": "Wish List",
   "edit_profile": "Edit Profile",
-  "sent_mail": "Sent Mail"
+  "sent_mail": "Sent Mail",
+  "action": "Action",
+  "comedy": "Comedy",
+  "horror": "Horror",
+  "see_more": "See More"
+
 }

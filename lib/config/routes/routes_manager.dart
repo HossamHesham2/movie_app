@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:movie_app/Features/auth/presentation/forget_password/view/forget_password_view.dart';
 import 'package:movie_app/Features/auth/presentation/login/view/login_view.dart';
 import 'package:movie_app/Features/auth/presentation/register/view/register_view.dart';
-import 'package:movie_app/Features/movie/browse/view/browse_view.dart';
-import 'package:movie_app/Features/movie/home/view/home_view.dart';
+import 'package:movie_app/Features/movie/Features/browse/view/browse_view.dart';
+import 'package:movie_app/Features/movie/Features/home/presentation/view/home_view.dart';
+import 'package:movie_app/Features/movie/features/home/presentation/view/movie_details_view.dart';
 import 'package:movie_app/Features/movie/main_layout/main_layout_view.dart';
-import 'package:movie_app/Features/movie/profile/presentation/view/profile_view.dart';
-import 'package:movie_app/Features/movie/search/view/search_view.dart';
+import 'package:movie_app/Features/movie/Features/profile/presentation/view/profile_view.dart';
+import 'package:movie_app/Features/movie/Features/search/view/search_view.dart';
 import 'package:movie_app/Features/onBoardingView/on_boarding_view.dart';
 
 class RoutesManager {
@@ -16,6 +17,7 @@ class RoutesManager {
   static const String forgetPasswordView = "/forgetPasswordView";
   static const String onBoardingView = "/onBoardingScreen";
   static const String homeView = "/homeView";
+  static const String movieDetailsView = "/movieDetailsView";
   static const String searchView = "/searchView";
   static const String browseView = "/browseView";
   static const String profileView = "/profileView";
@@ -34,6 +36,8 @@ class RoutesManager {
         return CupertinoPageRoute(builder: (context) => OnBoardingView());
       case homeView:
         return CupertinoPageRoute(builder: (context) => HomeView());
+      case movieDetailsView:
+        return CupertinoPageRoute(builder: (context) => MovieDetailsView());
       case searchView:
         return CupertinoPageRoute(builder: (context) => SearchView());
       case browseView:

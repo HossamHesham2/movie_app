@@ -165,4 +165,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sent_mail => 'Sent Mail';
+
+  @override
+  String get action => 'Action';
+
+  @override
+  String get comedy => 'Comedy';
+
+  @override
+  String get horror => 'Horror';
+
+  @override
+  String get see_more => 'See More';
 }

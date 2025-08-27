@@ -403,6 +403,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sent Mail'**
   String get sent_mail;
+
+  /// No description provided for @action.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get action;
+
+  /// No description provided for @comedy.
+  ///
+  /// In en, this message translates to:
+  /// **'Comedy'**
+  String get comedy;
+
+  /// No description provided for @horror.
+  ///
+  /// In en, this message translates to:
+  /// **'Horror'**
+  String get horror;
+
+  /// No description provided for @see_more.
+  ///
+  /// In en, this message translates to:
+  /// **'See More'**
+  String get see_more;
 }
 
 class _AppLocalizationsDelegate

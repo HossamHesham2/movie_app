@@ -1,0 +1,16 @@
+import 'package:movie_app/Features/movie/features/home/data/model/get_all_movie_response.dart';
+import 'package:movie_app/Features/movie/features/home/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/features/home/data/model/get_movie_suggestions_response.dart';
+import 'package:movie_app/Features/movie/features/home/domain/entities/get_all_movie_response_entity.dart';
+
+abstract class HomeRepository {
+  Future<GetAllMovieResponse?> getAvailableNowMovies();
+
+  Future<GetAllMovieResponse?> getAllMovieByGenre({required String genre});
+
+  Future<GetMovieDetailsResponse?> getMovieDetails({required int movieId});
+
+  Future<GetMovieSuggestionsResponse?> getMovieSuggestions({
+    required int movieId,
+  });
+}
