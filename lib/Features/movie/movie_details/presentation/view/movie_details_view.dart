@@ -34,6 +34,7 @@ class _MovieDetailsViewState extends State<MovieDetailsView> {
     final newMovieId = ModalRoute.of(context)?.settings.arguments as int?;
     if (newMovieId != null) {
       MovieDetailsCubit.get(context).getMovieDetails(movieId: newMovieId);
+      print("Id -> $newMovieId");
     }
   }
 
@@ -132,6 +133,7 @@ class _MovieDetailsViewState extends State<MovieDetailsView> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 40.h,)
                 ],
               ),
             );

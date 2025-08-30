@@ -13,6 +13,9 @@ import 'package:movie_app/Features/movie/movie_details/presentation/cubit/movie_
 import 'package:movie_app/Features/movie/tabs/home/data/data_source_impl/home_movie_remote_impl_ds.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/repository/home_repository_impl.dart';
 import 'package:movie_app/Features/movie/tabs/home/presentation/home/cubits/home_cubit.dart';
+import 'package:movie_app/Features/movie/tabs/search/data/data_source_impl/search_movies_remote_impl_ds.dart';
+import 'package:movie_app/Features/movie/tabs/search/data/repository/search_repository_impl.dart';
+import 'package:movie_app/Features/movie/tabs/search/presentation/cubits/search_cubit.dart';
 import 'package:movie_app/core/database/api/dio_consumer.dart';
 import 'package:movie_app/core/utils/my_bloc_observer.dart';
 import 'package:movie_app/my_app.dart';
@@ -48,7 +51,16 @@ void main() async {
         ),
         BlocProvider<MovieDetailsCubit>(
           create: (context) => MovieDetailsCubit(
-            MovieDetailsRepositoryImpl(MovieDetailsRemoteImplDs(DioConsumer(dio: Dio()))),
+            MovieDetailsRepositoryImpl(
+              MovieDetailsRemoteImplDs(DioConsumer(dio: Dio())),
+            ),
+          ),
+        ),
+        BlocProvider<SearchCubit>(
+          create: (context) => SearchCubit(
+            SearchRepositoryImpl(
+              SearchMoviesRemoteDsImpl(DioConsumer(dio: Dio())),
+            ),
           ),
         ),
       ],

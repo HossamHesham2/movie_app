@@ -55,7 +55,6 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
         ),
         SafeArea(
           child: Column(
-
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,6 +75,7 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                     },
                     icon: SvgPicture.asset(
                       SvgsManager.favIcon,
+
                       color: isSaved
                           ? ColorsManager.yellowFB
                           : ColorsManager.white,
@@ -90,7 +90,9 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                 widget.movie?.title ?? "",
                 style: StyleInterManager.bold24.copyWith(
                   color: ColorsManager.white,
+
                 ),
+                textAlign: TextAlign.center,
               ),
               SizedBox(height: 10.h),
               Text(

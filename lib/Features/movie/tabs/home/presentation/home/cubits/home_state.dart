@@ -11,7 +11,7 @@ final class HomeInitial extends HomeState {}
 
 final class HomeLoading extends HomeState {}
 
-class GetMoviesByGenreSuccess extends HomeState {
+final class GetMoviesByGenreSuccess extends HomeState {
   final String genre;
   final GetAllMovieResponse? movies;
 
@@ -20,7 +20,7 @@ class GetMoviesByGenreSuccess extends HomeState {
 
 }
 
-class GetMoviesByGenreLoading extends HomeState {
+final class GetMoviesByGenreLoading extends HomeState {
   final String genre;
 
   const GetMoviesByGenreLoading({required this.genre});

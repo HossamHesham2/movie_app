@@ -23,4 +23,8 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
       emit(MovieDetailsFailure(e.toString()));
     }
   }
+
+  void getMovieSuggestions()async{
+
+  }
 }
