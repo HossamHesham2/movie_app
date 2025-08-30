@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/Features/movie/Features/browse/view/browse_view.dart';
-import 'package:movie_app/Features/movie/Features/home/presentation/view/home_view.dart';
-import 'package:movie_app/Features/movie/Features/profile/presentation/view/profile_view.dart';
-import 'package:movie_app/Features/movie/Features/search/view/search_view.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/Features/movie/tabs/browse/view/browse_view.dart';
+import 'package:movie_app/Features/movie/tabs/home/presentation/home/view/home_view.dart';
+import 'package:movie_app/Features/movie/tabs/profile/presentation/view/profile_view.dart';
+import 'package:movie_app/Features/movie/tabs/search/presentation/view/search_view.dart';
+
 import 'package:movie_app/widgets/custom_bottom_navigation_bar.dart';
 
 class MainLayoutView extends StatefulWidget {

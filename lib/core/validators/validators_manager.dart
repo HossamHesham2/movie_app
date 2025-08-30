@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 
 class ValidatorsManager {
-
   static String? validateEmail(String? value, BuildContext context) {
     if (value == null || value.isEmpty) {
       return context.appLocalizations!.email_required;
@@ -14,11 +13,15 @@ class ValidatorsManager {
   }
 
   static String? validatePassword(String? value, BuildContext context) {
-    if (value == null || value.isEmpty) {
+    bool isStrongPassword = RegExp(
+      r'^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$',
+    ).hasMatch(value!);
+    if (value.trim().isEmpty) {
       return context.appLocalizations!.password_required;
-    }
-    if (value.length < 8) {
+    } else if (value.trim().length < 8) {
       return context.appLocalizations!.password_min_length;
+    } else if (!isStrongPassword) {
+      return context.appLocalizations!.pass_reg_ex;
     }
     return null;
   }

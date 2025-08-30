@@ -427,6 +427,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See More'**
   String get see_more;
+
+  /// No description provided for @watch.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch'**
+  String get watch;
+
+  /// No description provided for @screen_shots.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen Shots'**
+  String get screen_shots;
+
+  /// No description provided for @pass_reg_ex.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must contain an uppercase letter, a number, and a special character'**
+  String get pass_reg_ex;
+
+  /// No description provided for @similar.
+  ///
+  /// In en, this message translates to:
+  /// **'Similar'**
+  String get similar;
+
+  /// No description provided for @summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get summary;
+
+  /// No description provided for @cast.
+  ///
+  /// In en, this message translates to:
+  /// **'Cast'**
+  String get cast;
+
+  /// No description provided for @genres.
+  ///
+  /// In en, this message translates to:
+  /// **'Genres'**
+  String get genres;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
 }
 
 class _AppLocalizationsDelegate

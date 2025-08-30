@@ -5,9 +5,10 @@ import 'package:movie_app/Features/auth/data/repositories/auth_repository_impl.d
 import 'package:movie_app/Features/auth/presentation/forget_password/cubit/forget_password_cubit.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
-import 'package:movie_app/core/assets/assets_manager.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 import 'package:movie_app/core/validators/validators_manager.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
 import 'package:movie_app/widgets/custom_text_form_field.dart';
@@ -36,17 +37,17 @@ class ForgetPasswordView extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    backgroundColor: StyleManager.black12,
+                    backgroundColor: ColorsManager.black12,
                     title: Text(
                       context.appLocalizations!.error,
-                      style: StyleManager.bold20.copyWith(
-                        color: StyleManager.white,
+                      style: StyleInterManager.bold20.copyWith(
+                        color: ColorsManager.white,
                       ),
                     ),
                     content: Text(
                       state.errorMessage,
-                      style: StyleManager.regular16.copyWith(
-                        color: StyleManager.white,
+                      style: StyleInterManager.regular16.copyWith(
+                        color: ColorsManager.white,
                       ),
                     ),
                     actions: [
@@ -61,17 +62,17 @@ class ForgetPasswordView extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    backgroundColor: StyleManager.black12,
+                    backgroundColor: ColorsManager.black12,
                     title: Text(
                       context.appLocalizations!.forget_password,
-                      style: StyleManager.bold20.copyWith(
-                        color: StyleManager.white,
+                      style: StyleInterManager.bold20.copyWith(
+                        color: ColorsManager.white,
                       ),
                     ),
                     content: Text(
                       context.appLocalizations!.sent_mail,
-                      style: StyleManager.regular16.copyWith(
-                        color: StyleManager.white,
+                      style: StyleInterManager.regular16.copyWith(
+                        color: ColorsManager.white,
                       ),
                     ),
                     actions: [
@@ -94,46 +95,48 @@ class ForgetPasswordView extends StatelessWidget {
                 autovalidateMode: ForgetPasswordCubit.get(
                   context,
                 ).autoValidateMode,
-                child: Column(
-                  children: [
-                    Image.asset(
-                      PngManager.forgetPasswordBg,
-                      width: double.infinity,
-                    ),
-                    CustomTextFormField(
-                      prefixIcon: Icon(Icons.email),
-                      hint: context.appLocalizations!.email,
-                      obscureText: false,
-                      keyboardType: TextInputType.emailAddress,
-                      controller: ForgetPasswordCubit.get(
-                        context,
-                      ).emailController,
-                      validator: (_) => ValidatorsManager.validateEmail(
-                        ForgetPasswordCubit.get(
-                          context,
-                        ).emailController.text.trim(),
-                        context,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        PngManager.forgetPasswordBg,
+                        width: double.infinity,
                       ),
-                    ),
-                    SizedBox(height: 15.h),
-                    state is ForgetPasswordLoading
-                        ? Center(
-                            child: CircularProgressIndicator(
-                              color: StyleManager.yellowFB,
+                      CustomTextFormField(
+                        prefixIcon: Icon(Icons.email),
+                        hint: context.appLocalizations!.email,
+                        obscureText: false,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: ForgetPasswordCubit.get(
+                          context,
+                        ).emailController,
+                        validator: (_) => ValidatorsManager.validateEmail(
+                          ForgetPasswordCubit.get(
+                            context,
+                          ).emailController.text.trim(),
+                          context,
+                        ),
+                      ),
+                      SizedBox(height: 15.h),
+                      state is ForgetPasswordLoading
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: ColorsManager.yellowFB,
+                              ),
+                            )
+                          : CustomElevatedButton(
+                              onPressed: () async {
+                                await ForgetPasswordCubit.get(
+                                  context,
+                                ).forgetPassword();
+                              },
+                              text: context.appLocalizations!.verify_email,
+                              borderColor: ColorsManager.yellowF6,
+                              backgroundColor: ColorsManager.yellowF6,
+                              textColor: ColorsManager.black12,
                             ),
-                          )
-                        : CustomElevatedButton(
-                            onPressed: () async {
-                              await ForgetPasswordCubit.get(
-                                context,
-                              ).forgetPassword();
-                            },
-                            text: context.appLocalizations!.verify_email,
-                            borderColor: StyleManager.yellowF6,
-                            backgroundColor: StyleManager.yellowF6,
-                            textColor: StyleManager.black12,
-                          ),
-                  ],
+                    ],
+                  ),
                 ),
               );
             },
@@ -153,8 +156,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: StyleManager.transparent,
-      foregroundColor: StyleManager.yellowF6,
+      backgroundColor: ColorsManager.transparent,
+      foregroundColor: ColorsManager.yellowF6,
       title: Text(title),
       centerTitle: true,
       leading: IconButton(

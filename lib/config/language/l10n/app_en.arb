@@ -53,6 +53,13 @@
   "action": "Action",
   "comedy": "Comedy",
   "horror": "Horror",
-  "see_more": "See More"
-
+  "see_more": "See More",
+  "watch": "Watch",
+  "screen_shots": "Screen Shots",
+  "pass_reg_ex": "Password must contain an uppercase letter, a number, and a special character",
+  "similar": "Similar",
+  "summary": "Summary",
+  "cast": "Cast",
+  "genres": "Genres",
+  "search": "Search"
 }

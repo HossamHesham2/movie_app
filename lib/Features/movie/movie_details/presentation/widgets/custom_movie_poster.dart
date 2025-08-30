@@ -1,0 +1,110 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_box_container.dart';
+import 'package:movie_app/core/extensions/build_context_extension.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
+
+class CustomMoviePoster extends StatefulWidget {
+  final Movie? movie;
+
+  const CustomMoviePoster({super.key, required this.movie});
+
+  @override
+  State<CustomMoviePoster> createState() => _CustomMoviePosterState();
+}
+
+class _CustomMoviePosterState extends State<CustomMoviePoster> {
+  bool isSaved = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: CachedNetworkImage(
+            imageUrl: widget.movie?.largeCoverImage ?? "",
+            fit: BoxFit.fill,
+            placeholder: (context, url) => Center(
+              child: CircularProgressIndicator(color: ColorsManager.yellowFB),
+            ),
+            errorWidget: (context, url, error) => Icon(
+              Icons.broken_image,
+              color: ColorsManager.yellowFB,
+              size: 30.sp,
+            ),
+          ),
+        ),
+
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  ColorsManager.black12.withValues(alpha: 0.4),
+                  ColorsManager.black12.withValues(alpha: 0.8),
+                  ColorsManager.black12,
+                ],
+              ),
+            ),
+          ),
+        ),
+        SafeArea(
+          child: Column(
+
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: ColorsManager.white,
+                      size: 30.sp,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isSaved = !isSaved;
+                      });
+                    },
+                    icon: SvgPicture.asset(
+                      SvgsManager.favIcon,
+                      color: isSaved
+                          ? ColorsManager.yellowFB
+                          : ColorsManager.white,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 150.h),
+              Image.asset(PngManager.play),
+              SizedBox(height: 150.h),
+              Text(
+                widget.movie?.title ?? "",
+                style: StyleInterManager.bold24.copyWith(
+                  color: ColorsManager.white,
+                ),
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                " ${widget.movie?.year}",
+                style: StyleInterManager.bold20.copyWith(
+                  color: ColorsManager.greyAD,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

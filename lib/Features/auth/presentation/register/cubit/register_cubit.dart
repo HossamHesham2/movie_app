@@ -37,6 +37,12 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!formKey.currentState!.validate()) {
       autoValidateMode = AutovalidateMode.always;
       emit(RegisterValidationError());
+      return false ;
+    }
+    if (passwordController.text != confirmPasswordController.text) {
+      emit(RegisterFailure("Password not match"));
+      return false ;
+
     }
 
     emit(RegisterLoading());
@@ -63,7 +69,6 @@ class RegisterCubit extends Cubit<RegisterState> {
         profileImage: profileImage ?? 'assets/images/avatar1.png',
         token: token ?? "token error",
       );
-      CacheHelper.saveData(boxName: boxName, key: key, value: model);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)

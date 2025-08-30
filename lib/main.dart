@@ -7,11 +7,16 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:movie_app/Features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:movie_app/Features/auth/presentation/login/cubit/login_cubit.dart';
 import 'package:movie_app/Features/auth/presentation/register/cubit/register_cubit.dart';
-import 'package:movie_app/Features/movie/features/home/data/data_source_contract/home_movie_remote_ds.dart';
-import 'package:movie_app/Features/movie/features/home/data/data_source_impl/home_movie_remote_impl_ds.dart';
-import 'package:movie_app/Features/movie/features/home/data/repository/home_repository_impl.dart';
-import 'package:movie_app/Features/movie/features/home/presentation/cubits/home_cubit.dart';
+import 'package:movie_app/Features/movie/movie_details/data/data_source_contract/movie_details_movie_remote_ds.dart';
+import 'package:movie_app/Features/movie/movie_details/data/data_source_impl/movie_details_movie_remote_impl_ds.dart';
+import 'package:movie_app/Features/movie/movie_details/data/repository/movie_details_repository_impl.dart';
+import 'package:movie_app/Features/movie/movie_details/domain/repository/movie_details_repository.dart';
+import 'package:movie_app/Features/movie/movie_details/presentation/cubit/movie_details_cubit.dart';
+import 'package:movie_app/Features/movie/tabs/home/data/data_source_impl/home_movie_remote_impl_ds.dart';
+import 'package:movie_app/Features/movie/tabs/home/data/repository/home_repository_impl.dart';
+import 'package:movie_app/Features/movie/tabs/home/presentation/home/cubits/home_cubit.dart';
 import 'package:movie_app/core/database/api/dio_consumer.dart';
+import 'package:movie_app/core/utils/my_bloc_observer.dart';
 import 'package:movie_app/my_app.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,6 +28,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter();
+  Bloc.observer = MyBlocObserver();
   Hive.init(appDocumentsDir.path);
   final languageCubit = LanguageCubit();
   await SharedPreferences.getInstance();
@@ -40,6 +46,11 @@ void main() async {
         BlocProvider<HomeCubit>(
           create: (context) => HomeCubit(
             HomeRepositoryImpl(HomeMovieRemoteImplDs(DioConsumer(dio: Dio()))),
+          ),
+        ),
+        BlocProvider<MovieDetailsCubit>(
+          create: (context) => MovieDetailsCubit(
+            MovieDetailsRepositoryImpl(MovieDetailsRemoteImplDs(DioConsumer(dio: Dio()))),
           ),
         ),
       ],

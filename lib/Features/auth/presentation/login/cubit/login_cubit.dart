@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (!formKey.currentState!.validate()) {
       autoValidateMode = AutovalidateMode.always;
       emit(LoginValidationError());
-      return true;
+      return false;
     }
 
     emit(LoginLoading());

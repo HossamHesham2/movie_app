@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomProfileImage extends StatelessWidget {
   final String name;
@@ -20,7 +21,7 @@ class CustomProfileImage extends StatelessWidget {
         SizedBox(height: 20.h),
         Text(
           name,
-          style: StyleManager.bold20.copyWith(color: StyleManager.white),
+          style: StyleInterManager.bold20.copyWith(color: ColorsManager.white),
         ),
       ],
     );

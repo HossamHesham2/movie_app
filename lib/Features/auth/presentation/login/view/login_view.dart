@@ -4,15 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_app/Features/auth/presentation/login/cubit/login_cubit.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 import 'package:movie_app/core/validators/validators_manager.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_bottom_auth.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_language_toggle.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:movie_app/widgets/custom_text_form_field.dart';
-import 'package:movie_app/core/assets/assets_manager.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -32,15 +33,15 @@ class _LoginViewState extends State<LoginView> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              backgroundColor: StyleManager.black12,
+              backgroundColor: ColorsManager.black12,
               title: Text(
                 context.appLocalizations!.error,
-                style: StyleManager.bold20.copyWith(color: StyleManager.white),
+                style: StyleInterManager.bold20.copyWith(color: ColorsManager.white),
               ),
               content: Text(
                 state.errMessage,
-                style: StyleManager.regular16.copyWith(
-                  color: StyleManager.white,
+                style: StyleInterManager.regular16.copyWith(
+                  color: ColorsManager.white,
                 ),
               ),
               actions: [
@@ -50,6 +51,12 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ],
             ),
+          );
+        } else if (state is LoginSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutesManager.mainLayoutView,
+            (route) => false,
           );
         }
       },
@@ -127,50 +134,17 @@ class _LoginViewState extends State<LoginView> {
                       // TODO : Login Button
                       state is LoginLoading
                           ? CircularProgressIndicator(
-                              color: StyleManager.yellowFB,
+                              color: ColorsManager.yellowFB,
                             )
                           : CustomElevatedButton(
                               text: context.appLocalizations!.login,
-                              backgroundColor: StyleManager.yellowF6,
-                              borderColor: StyleManager.yellowF6,
-                              textColor: StyleManager.black28,
+                              backgroundColor: ColorsManager.yellowF6,
+                              borderColor: ColorsManager.yellowF6,
+                              textColor: ColorsManager.black28,
                               onPressed: () async {
                                 final isLoggedIn = await LoginCubit.get(
                                   context,
                                 ).login();
-                                if (isLoggedIn) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      backgroundColor: StyleManager.black12,
-                                      title: Text(
-                                        context.appLocalizations!.login,
-                                        style: StyleManager.bold20.copyWith(
-                                          color: StyleManager.white,
-                                        ),
-                                      ),
-                                      content: Text(
-                                        context
-                                            .appLocalizations!
-                                            .login_successfully,
-                                        style: StyleManager.regular16.copyWith(
-                                          color: StyleManager.white,
-                                        ),
-                                      ),
-                                      actions: [
-                                        CustomTextButton(
-                                          text: context.appLocalizations!.go,
-                                          onPressed: () =>
-                                              Navigator.pushNamedAndRemoveUntil(
-                                                context,
-                                                RoutesManager.mainLayoutView,
-                                                (route) => false,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                }
                               },
                             ),
                       SizedBox(height: 20.h),
@@ -192,7 +166,7 @@ class _LoginViewState extends State<LoginView> {
                         children: [
                           Expanded(
                             child: Divider(
-                              color: StyleManager.yellowF6,
+                              color: ColorsManager.yellowF6,
                               thickness: 1,
                               indent: 70.w,
                               endIndent: 12.w,
@@ -200,13 +174,13 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           Text(
                             context.appLocalizations!.or,
-                            style: StyleManager.regular15.copyWith(
-                              color: StyleManager.yellowF6,
+                            style: StyleInterManager.regular15.copyWith(
+                              color: ColorsManager.yellowF6,
                             ),
                           ),
                           Expanded(
                             child: Divider(
-                              color: StyleManager.yellowF6,
+                              color: ColorsManager.yellowF6,
                               thickness: 1,
                               indent: 12.w,
                               endIndent: 70.w,
@@ -220,12 +194,12 @@ class _LoginViewState extends State<LoginView> {
                         text: context.appLocalizations!.login_with_google,
                         prefixWidget: Icon(
                           FontAwesomeIcons.google,
-                          color: StyleManager.black28,
+                          color: ColorsManager.black28,
                           size: 25.sp,
                         ),
-                        backgroundColor: StyleManager.yellowF6,
-                        borderColor: StyleManager.yellowF6,
-                        textColor: StyleManager.black28,
+                        backgroundColor: ColorsManager.yellowF6,
+                        borderColor: ColorsManager.yellowF6,
+                        textColor: ColorsManager.black28,
                         onPressed: () {},
                       ),
                       SizedBox(height: 20.h),

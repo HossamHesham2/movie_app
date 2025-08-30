@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final void Function(String)? onChanged;
@@ -35,36 +36,40 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       obscureText: obscureText,
 
-      style: StyleManager.regular16.copyWith(color: StyleManager.white),
+      style: StyleInterManager.regular16.copyWith(color: ColorsManager.white),
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
-        prefixIconColor: StyleManager.white,
+        prefixIconColor: ColorsManager.white,
         suffixIcon: suffixIcon,
-        suffixIconColor: StyleManager.white,
+        suffixIconColor: ColorsManager.white,
         hint: Text(
           hint,
-          style: StyleManager.regular15.copyWith(color: StyleManager.white),
+          style: StyleInterManager.regular15.copyWith(
+            color: ColorsManager.white,
+          ),
         ),
 
-        fillColor: StyleManager.black28,
+        fillColor: ColorsManager.black28,
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(color: StyleManager.black28),
+          borderSide: BorderSide(color: ColorsManager.black28),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(color: StyleManager.black28),
+          borderSide: BorderSide(color: ColorsManager.black28),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(color: StyleManager.black28),
+          borderSide: BorderSide(color: ColorsManager.black28),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(color: StyleManager.redF8),
+          borderSide: BorderSide(color: ColorsManager.redF8),
         ),
-        errorStyle: StyleManager.regular14.copyWith(color: StyleManager.redF8),
+        errorStyle: StyleInterManager.regular14.copyWith(
+          color: ColorsManager.redF8,
+        ),
       ),
     );
   }

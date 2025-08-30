@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomHistory extends StatelessWidget {
   final String number;
@@ -14,12 +15,12 @@ class CustomHistory extends StatelessWidget {
       children: [
         Text(
           number,
-          style: StyleManager.bold24.copyWith(color: StyleManager.white),
+          style: StyleInterManager.bold24.copyWith(color: ColorsManager.white),
         ),
         SizedBox(height: 10.h),
         Text(
           text,
-          style: StyleManager.bold20.copyWith(color: StyleManager.white),
+          style: StyleInterManager.bold20.copyWith(color: ColorsManager.white),
         ),
       ],
     );

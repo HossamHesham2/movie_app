@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:movie_app/Features/auth/presentation/forget_password/view/forget_password_view.dart';
 import 'package:movie_app/Features/auth/presentation/login/view/login_view.dart';
 import 'package:movie_app/Features/auth/presentation/register/view/register_view.dart';
-import 'package:movie_app/Features/movie/Features/browse/view/browse_view.dart';
-import 'package:movie_app/Features/movie/Features/home/presentation/view/home_view.dart';
-import 'package:movie_app/Features/movie/features/home/presentation/view/movie_details_view.dart';
+
 import 'package:movie_app/Features/movie/main_layout/main_layout_view.dart';
-import 'package:movie_app/Features/movie/Features/profile/presentation/view/profile_view.dart';
-import 'package:movie_app/Features/movie/Features/search/view/search_view.dart';
+import 'package:movie_app/Features/movie/movie_details/presentation/view/movie_details_view.dart';
+import 'package:movie_app/Features/movie/tabs/browse/view/browse_view.dart';
+import 'package:movie_app/Features/movie/tabs/home/presentation/home/view/home_view.dart';
+import 'package:movie_app/Features/movie/tabs/profile/presentation/view/profile_view.dart';
+import 'package:movie_app/Features/movie/tabs/search/presentation/view/search_view.dart';
 import 'package:movie_app/Features/onBoardingView/on_boarding_view.dart';
 
 class RoutesManager {
@@ -37,7 +38,10 @@ class RoutesManager {
       case homeView:
         return CupertinoPageRoute(builder: (context) => HomeView());
       case movieDetailsView:
-        return CupertinoPageRoute(builder: (context) => MovieDetailsView());
+        return CupertinoPageRoute(
+          builder: (context) => MovieDetailsView(),
+          settings: settings,
+        );
       case searchView:
         return CupertinoPageRoute(builder: (context) => SearchView());
       case browseView:

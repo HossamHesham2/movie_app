@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movie_app/Features/auth/presentation/register/cubit/register_cubit.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 import 'package:movie_app/core/validators/validators_manager.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_bottom_auth.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
@@ -12,7 +14,6 @@ import 'package:movie_app/Features/auth/presentation/widgets/custom_list_view_av
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:movie_app/widgets/custom_text_form_field.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -24,12 +25,6 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   bool obscureTextPassword = true;
   bool obscureTextConfirmPassword = true;
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    RegisterCubit.get(context).formKey.currentState?.reset();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +34,15 @@ class _RegisterViewState extends State<RegisterView> {
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
-              backgroundColor: StyleManager.black12,
+              backgroundColor: ColorsManager.black12,
               title: Text(
                 context.appLocalizations!.error,
-                style: StyleManager.bold20.copyWith(color: StyleManager.white),
+                style: StyleInterManager.bold20.copyWith(color: ColorsManager.white),
               ),
               content: Text(
                 state.errorMessage,
-                style: StyleManager.regular16.copyWith(
-                  color: StyleManager.white,
+                style: StyleInterManager.regular16.copyWith(
+                  color: ColorsManager.white,
                 ),
               ),
               actions: [
@@ -57,6 +52,12 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ],
             ),
+          );
+        } else if (state is RegisterSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutesManager.loginView,
+            (route) => false,
           );
         }
       },
@@ -177,49 +178,16 @@ class _RegisterViewState extends State<RegisterView> {
                       // TODO: Register Button
                       state is RegisterLoading
                           ? CircularProgressIndicator(
-                              color: StyleManager.yellowFB,
+                              color: ColorsManager.yellowFB,
                             )
                           : CustomElevatedButton(
                               text: context.appLocalizations!.create_account,
-                              backgroundColor: StyleManager.yellowF6,
-                              borderColor: StyleManager.yellowF6,
-                              textColor: StyleManager.black28,
+                              backgroundColor: ColorsManager.yellowF6,
+                              borderColor: ColorsManager.yellowF6,
+                              textColor: ColorsManager.black28,
                               onPressed: () async {
                                 final isRegistered = await registerCubit
                                     .register();
-                                if (isRegistered) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                      backgroundColor: StyleManager.black12,
-                                      title: Text(
-                                        context.appLocalizations!.register,
-                                        style: StyleManager.bold20.copyWith(
-                                          color: StyleManager.white,
-                                        ),
-                                      ),
-                                      content: Text(
-                                        context
-                                            .appLocalizations!
-                                            .register_successfully,
-                                        style: StyleManager.regular16.copyWith(
-                                          color: StyleManager.white,
-                                        ),
-                                      ),
-                                      actions: [
-                                        CustomTextButton(
-                                          text: context.appLocalizations!.go,
-                                          onPressed: () =>
-                                              Navigator.pushNamedAndRemoveUntil(
-                                                context,
-                                                RoutesManager.loginView,
-                                                (route) => false,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                }
                               },
                             ),
                       SizedBox(height: 20.h),
@@ -231,7 +199,7 @@ class _RegisterViewState extends State<RegisterView> {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             RoutesManager.loginView,
-                                (route) => false,
+                            (route) => false,
                           );
                         },
                       ),
@@ -259,8 +227,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: StyleManager.transparent,
-      foregroundColor: StyleManager.yellowF6,
+      backgroundColor: ColorsManager.transparent,
+      foregroundColor: ColorsManager.yellowF6,
       title: Text(title),
       centerTitle: true,
       leading: IconButton(
