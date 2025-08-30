@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/Features/onBoardingView/on_board_screen_4.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
-import 'package:movie_app/core/assets/assets_manager.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 import 'package:movie_app/widgets/custom_elevated_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,14 +29,14 @@ class _OnBoardScreen5State extends State<OnBoardScreen5> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: StyleManager.transparent,
+        backgroundColor: ColorsManager.transparent,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
               padding: EdgeInsets.all(18),
               decoration: BoxDecoration(
-                color: StyleManager.black12,
+                color: ColorsManager.black12,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40.r),
                   topRight: Radius.circular(40.r),
@@ -45,8 +46,8 @@ class _OnBoardScreen5State extends State<OnBoardScreen5> {
                 children: [
                   Text(
                     context.appLocalizations!.poster5_title,
-                    style: StyleManager.bold24.copyWith(
-                      color: StyleManager.white,
+                    style: StyleInterManager.bold24.copyWith(
+                      color: ColorsManager.white,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -54,9 +55,9 @@ class _OnBoardScreen5State extends State<OnBoardScreen5> {
                   SizedBox(height: 24.h),
                   CustomElevatedButton(
                     text: context.appLocalizations!.next,
-                    borderColor: StyleManager.yellowF6,
-                    backgroundColor: StyleManager.yellowF6,
-                    textColor: StyleManager.black28,
+                    borderColor: ColorsManager.yellowF6,
+                    backgroundColor: ColorsManager.yellowF6,
+                    textColor: ColorsManager.black28,
                     onPressed: () async {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.setBool(ConstantsManager.isSeenKey, true);
@@ -71,9 +72,9 @@ class _OnBoardScreen5State extends State<OnBoardScreen5> {
 
                   CustomElevatedButton(
                     text: context.appLocalizations!.back,
-                    borderColor: StyleManager.yellowF6,
-                    backgroundColor: StyleManager.transparent,
-                    textColor: StyleManager.yellowF6,
+                    borderColor: ColorsManager.yellowF6,
+                    backgroundColor: ColorsManager.transparent,
+                    textColor: ColorsManager.yellowF6,
                     onPressed: () {
                       Navigator.pushAndRemoveUntil(
                         context,

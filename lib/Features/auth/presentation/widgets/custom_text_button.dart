@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomTextButton extends StatelessWidget {
   final void Function()? onPressed;
@@ -20,8 +21,8 @@ class CustomTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: StyleManager.regular14.copyWith(
-          color: StyleManager.yellowF6,
+        style: StyleInterManager.regular14.copyWith(
+          color: ColorsManager.yellowF6,
           fontWeight: fontWeight,
         ),
       ),

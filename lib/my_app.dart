@@ -5,7 +5,7 @@ import 'package:movie_app/config/language/l10n/app_localizations.dart';
 import 'package:movie_app/config/language/l10n/cubit/language_cubit.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyApp extends StatefulWidget {
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: state.locale,
-            darkTheme: ThemeData(scaffoldBackgroundColor: StyleManager.black12),
+            darkTheme: ThemeData(scaffoldBackgroundColor: ColorsManager.black12),
             themeMode: ThemeMode.dark,
             onGenerateRoute: RoutesManager.getRoutes,
             initialRoute: initialRoute,

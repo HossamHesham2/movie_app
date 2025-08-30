@@ -165,4 +165,41 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sent_mail => 'Sent Mail';
+
+  @override
+  String get action => 'Action';
+
+  @override
+  String get comedy => 'Comedy';
+
+  @override
+  String get horror => 'Horror';
+
+  @override
+  String get see_more => 'See More';
+
+  @override
+  String get watch => 'Watch';
+
+  @override
+  String get screen_shots => 'Screen Shots';
+
+  @override
+  String get pass_reg_ex =>
+      'Password must contain an uppercase letter, a number, and a special character';
+
+  @override
+  String get similar => 'Similar';
+
+  @override
+  String get summary => 'Summary';
+
+  @override
+  String get cast => 'Cast';
+
+  @override
+  String get genres => 'Genres';
+
+  @override
+  String get search => 'Search';
 }

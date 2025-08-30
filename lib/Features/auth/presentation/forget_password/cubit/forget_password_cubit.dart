@@ -1,8 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
 
 part 'forget_password_state.dart';
@@ -15,7 +12,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit(this.authRepository) : super(ForgetPasswordInitial());
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
-  static ForgetPasswordCubit get(context) =>
+  static ForgetPasswordCubit get(BuildContext context) =>
       BlocProvider.of<ForgetPasswordCubit>(context);
 
   Future<void> forgetPassword() async {

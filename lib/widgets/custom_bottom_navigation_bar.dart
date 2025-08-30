@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/core/assets/assets_manager.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/widgets/custom_icon_bottom_bar.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -25,7 +25,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         width: double.infinity,
         height: 60.h,
         decoration: BoxDecoration(
-          color: StyleManager.black28,
+          color: ColorsManager.black28,
           borderRadius: BorderRadius.circular(16.r),
         ),
         child: Row(

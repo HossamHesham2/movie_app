@@ -166,4 +166,41 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sent_mail => 'تم إرسال البريد';
+
+  @override
+  String get action => 'أكشن';
+
+  @override
+  String get comedy => 'كوميديا';
+
+  @override
+  String get horror => 'رعب';
+
+  @override
+  String get see_more => 'أرني المزيد';
+
+  @override
+  String get watch => 'مشاهدة';
+
+  @override
+  String get screen_shots => 'لقطات الشاشة';
+
+  @override
+  String get pass_reg_ex =>
+      'كلمة المرور يجب أن تحتوي على حرف كبير، رقم، ورمز خاص';
+
+  @override
+  String get similar => 'مشابه';
+
+  @override
+  String get summary => 'الملخص';
+
+  @override
+  String get cast => 'طاقم العمل';
+
+  @override
+  String get genres => 'الأنواع';
+
+  @override
+  String get search => 'بحث';
 }

@@ -1,4 +1,4 @@
-import 'package:movie_app/core/assets/assets_manager.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
 
 class ConstantsManager {
   static const List<String> avatarsList = [

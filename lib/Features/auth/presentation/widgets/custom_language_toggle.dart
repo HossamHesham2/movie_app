@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_app/config/language/l10n/cubit/language_cubit.dart';
-import 'package:movie_app/core/assets/assets_manager.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
 
 class CustomLanguageToggle extends StatelessWidget {
   const CustomLanguageToggle({super.key});
@@ -20,7 +20,7 @@ class CustomLanguageToggle extends StatelessWidget {
 
         return Container(
           decoration: BoxDecoration(
-            border: Border.all(width: 3, color: StyleManager.yellowF6),
+            border: Border.all(width: 3, color: ColorsManager.yellowF6),
             borderRadius: BorderRadius.circular(200.r),
           ),
           child: Row(
@@ -55,12 +55,12 @@ class CustomLanguageToggle extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(5.w),
         decoration: BoxDecoration(
-          color: isSelected ? StyleManager.yellowF6 : StyleManager.transparent,
+          color: isSelected ? ColorsManager.yellowF6 : ColorsManager.transparent,
           shape: BoxShape.circle,
           border: Border.all(
             color: isSelected
-                ? StyleManager.yellowF6
-                : StyleManager.transparent,
+                ? ColorsManager.yellowF6
+                : ColorsManager.transparent,
           ),
         ),
         child: SvgPicture.asset(flagAsset, width: 30.w),

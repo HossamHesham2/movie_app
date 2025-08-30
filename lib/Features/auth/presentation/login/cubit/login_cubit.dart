@@ -1,5 +1,4 @@
 
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (!formKey.currentState!.validate()) {
       autoValidateMode = AutovalidateMode.always;
       emit(LoginValidationError());
-      return true;
+      return false;
     }
 
     emit(LoginLoading());

@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/Features/auth/data/models/user_model.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
-import 'package:movie_app/core/database/cash/cashe_helper.dart';
 
 part 'register_state.dart';
 
@@ -37,6 +35,12 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!formKey.currentState!.validate()) {
       autoValidateMode = AutovalidateMode.always;
       emit(RegisterValidationError());
+      return false ;
+    }
+    if (passwordController.text != confirmPasswordController.text) {
+      emit(RegisterFailure("Password not match"));
+      return false ;
+
     }
 
     emit(RegisterLoading());
@@ -63,7 +67,6 @@ class RegisterCubit extends Cubit<RegisterState> {
         profileImage: profileImage ?? 'assets/images/avatar1.png',
         token: token ?? "token error",
       );
-      CacheHelper.saveData(boxName: boxName, key: key, value: model);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
 
 class CustomIconBottomBar extends StatelessWidget {
   final String svg;
@@ -18,7 +18,7 @@ class CustomIconBottomBar extends StatelessWidget {
       svg,
       colorFilter: isSelected
           ? ColorFilter.mode(
-              StyleManager.yellowFB,
+              ColorsManager.yellowFB,
               BlendMode.srcIn,
               // blend mode
             )

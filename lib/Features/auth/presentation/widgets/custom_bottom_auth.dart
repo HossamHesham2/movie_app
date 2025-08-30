@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
-import 'package:movie_app/core/styles/style_manager.dart';
+import 'package:movie_app/core/utils/color_managers.dart';
+import 'package:movie_app/core/utils/font_weight_manager.dart';
+import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomBottomAuth extends StatelessWidget {
   final String title;
@@ -22,11 +24,11 @@ class CustomBottomAuth extends StatelessWidget {
       children: [
         Text(
           title,
-          style: StyleManager.regular14.copyWith(color: StyleManager.white),
+          style: StyleInterManager.regular14.copyWith(color: ColorsManager.white),
         ),
         CustomTextButton(
           text: text,
-          fontWeight: StyleManager.bold,
+          fontWeight: FontWeightManager.bold,
           onPressed: onPressed,
         ),
       ],
