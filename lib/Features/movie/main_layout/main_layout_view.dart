@@ -24,7 +24,6 @@ class _MainLayoutViewState extends State<MainLayoutView> {
 
   @override
   Widget build(BuildContext context) {
-    print("new Screen");
     return Scaffold(
       bottomNavigationBar: CustomBottomNavigationBar(
         callBackFunction: (index) {

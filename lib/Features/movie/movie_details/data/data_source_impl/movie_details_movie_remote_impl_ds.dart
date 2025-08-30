@@ -1,10 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movie_app/Features/movie/movie_details/data/data_source_contract/movie_details_movie_remote_ds.dart';
 import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
-import 'package:movie_app/Features/movie/tabs/home/data/data_source_contract/home_movie_remote_ds.dart';
 
-import 'package:movie_app/Features/movie/tabs/home/data/model/get_all_movie_response.dart';
-import 'package:movie_app/Features/movie/tabs/home/data/model/get_movie_suggestions_response.dart';
 import 'package:movie_app/core/database/api/api_consumer.dart';
 import 'package:movie_app/core/database/api/end_points.dart';
 import 'package:movie_app/core/errors/server_exception.dart';
@@ -32,7 +29,7 @@ class MovieDetailsRemoteImplDs extends MovieDetailsRemoteDs {
       return getMovieDetailsResponse;
     } on DioException catch (e) {
       throw Exception("Failed to fetch movie details: ${e.message}");
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }

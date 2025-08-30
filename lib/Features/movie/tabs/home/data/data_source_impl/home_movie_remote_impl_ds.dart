@@ -25,7 +25,7 @@ class HomeMovieRemoteImplDs extends HomeMovieRemoteDs {
       return getAllMovieResponse;
     } on DioException catch (e) {
       throw Exception("Failed to fetch all movies: ${e.message}");
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -48,7 +48,7 @@ class HomeMovieRemoteImplDs extends HomeMovieRemoteDs {
       return getMovieSuggestionsResponse;
     } on DioException catch (e) {
       throw Exception("Failed to fetch movie suggestions: ${e.message}");
-    } on Exception catch (e) {
+    } on Exception {
       rethrow;
     }
   }
@@ -71,7 +71,7 @@ class HomeMovieRemoteImplDs extends HomeMovieRemoteDs {
       return getAllMovieResponse;
     } on DioException catch (e) {
       throw Exception("Failed to fetch all movies: ${e.message}");
-    } on Exception catch (e) {
+    } on Exception  {
       rethrow;
     }
   }

@@ -1,11 +1,10 @@
 part of 'home_cubit.dart';
 
 @immutable
-sealed class HomeState extends Equatable {
+sealed class HomeState {
   const HomeState();
 
-  @override
-  List<Object?> get props => [];
+
 }
 
 final class HomeInitial extends HomeState {}
@@ -18,8 +17,7 @@ class GetMoviesByGenreSuccess extends HomeState {
 
   const GetMoviesByGenreSuccess({required this.genre, required this.movies});
 
-  @override
-  List<Object?> get props => [genre, movies];
+
 }
 
 class GetMoviesByGenreLoading extends HomeState {
@@ -27,8 +25,7 @@ class GetMoviesByGenreLoading extends HomeState {
 
   const GetMoviesByGenreLoading({required this.genre});
 
-  @override
-  List<Object?> get props => [genre];
+
 }
 
 final class GetMoviesByGenreFailure extends HomeState {
@@ -36,8 +33,7 @@ final class GetMoviesByGenreFailure extends HomeState {
 
   const GetMoviesByGenreFailure(this.errorMessage);
 
-  @override
-  List<Object?> get props => [errorMessage];
+
 }
 
 final class GetAvailableNowMoviesLoading extends HomeState {}
@@ -47,8 +43,6 @@ final class GetAvailableNowMoviesSuccess extends HomeState {
 
   const GetAvailableNowMoviesSuccess({required this.movies});
 
-  @override
-  List<Object?> get props => [movies];
 }
 
 final class GetAvailableNowMoviesFailure extends HomeState {
@@ -56,8 +50,7 @@ final class GetAvailableNowMoviesFailure extends HomeState {
 
   const GetAvailableNowMoviesFailure(this.errorMessage);
 
-  @override
-  List<Object?> get props => [errorMessage];
+
 }
 
 

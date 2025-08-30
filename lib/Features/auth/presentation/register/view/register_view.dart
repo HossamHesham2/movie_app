@@ -186,7 +186,7 @@ class _RegisterViewState extends State<RegisterView> {
                               borderColor: ColorsManager.yellowF6,
                               textColor: ColorsManager.black28,
                               onPressed: () async {
-                                final isRegistered = await registerCubit
+                                await registerCubit
                                     .register();
                               },
                             ),

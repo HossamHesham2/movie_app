@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
-import 'package:movie_app/core/utils/font_size_manager.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomBoxContainer extends StatelessWidget {

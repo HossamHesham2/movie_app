@@ -46,7 +46,7 @@ class CustomFilmCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "${rate}",
+                  "$rate",
                   style: StyleInterManager.regular16.copyWith(
                     color: ColorsManager.white,
                   ),

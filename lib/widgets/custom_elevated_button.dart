@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
-import 'package:movie_app/core/utils/color_managers.dart';
-import 'package:movie_app/core/utils/font_weight_manager.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
 
 class CustomElevatedButton extends StatelessWidget {

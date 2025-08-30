@@ -1,5 +1,3 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/model/get_all_movie_response.dart';
@@ -23,7 +21,6 @@ class HomeCubit extends Cubit<HomeState> {
       emit(GetAvailableNowMoviesLoading());
       final movies = await homeRepository.getAvailableNowMovies();
       availableNowMovies = movies;
-      print("Movies List ----> ${movies?.data?.movies?[0].title}");
       emit(GetAvailableNowMoviesSuccess(movies: movies));
     } on Exception catch (e) {
       emit(GetAvailableNowMoviesFailure(e.toString()));

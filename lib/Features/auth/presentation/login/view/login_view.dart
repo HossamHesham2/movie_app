@@ -142,7 +142,7 @@ class _LoginViewState extends State<LoginView> {
                               borderColor: ColorsManager.yellowF6,
                               textColor: ColorsManager.black28,
                               onPressed: () async {
-                                final isLoggedIn = await LoginCubit.get(
+                                await LoginCubit.get(
                                   context,
                                 ).login();
                               },

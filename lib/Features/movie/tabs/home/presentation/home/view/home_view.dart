@@ -13,7 +13,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    print("new Build");
 
     return Scaffold(
       body: SingleChildScrollView(

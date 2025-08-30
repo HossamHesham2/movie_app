@@ -11,9 +11,6 @@ final class MovieDetailsSuccess extends MovieDetailsState {
   final GetMovieDetailsResponse? movie;
 
   MovieDetailsSuccess({required this.movie});
-
-  @override
-  List<Object?> get props => [movie];
 }
 
 final class MovieDetailsFailure extends MovieDetailsState {

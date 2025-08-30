@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/Features/auth/data/models/user_model.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
-import 'package:movie_app/core/database/cash/cashe_helper.dart';
 
 part 'register_state.dart';
 
