@@ -7,7 +7,7 @@ import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
-import 'package:movie_app/widgets/custom_elevated_button.dart';
+import 'package:movie_app/core/widgets/custom_elevated_button.dart';
 
 class OnBoardScreen2 extends StatefulWidget {
   const OnBoardScreen2({super.key});

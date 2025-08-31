@@ -8,10 +8,10 @@ import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
 import 'package:movie_app/core/validators/validators_manager.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_bottom_auth.dart';
-import 'package:movie_app/widgets/custom_elevated_button.dart';
+import 'package:movie_app/core/widgets/custom_elevated_button.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_language_toggle.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
-import 'package:movie_app/widgets/custom_text_form_field.dart';
+import 'package:movie_app/core/widgets/custom_text_form_field.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 

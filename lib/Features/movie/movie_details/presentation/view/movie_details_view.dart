@@ -8,16 +8,16 @@ import 'package:movie_app/Features/movie/movie_details/presentation/widgets/cust
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_genres.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_movie_poster.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_screen_shots.dart';
+import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_similar_movies.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_summary.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_movie_castes.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/model/get_movie_suggestions_response.dart';
-import 'package:movie_app/Features/movie/tabs/home/presentation/widgets/custom_film_card.dart';
-import 'package:movie_app/config/routes/routes_manager.dart';
+
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
-import 'package:movie_app/widgets/custom_elevated_button.dart';
+import 'package:movie_app/core/widgets/custom_elevated_button.dart';
 
 class MovieDetailsView extends StatefulWidget {
   const MovieDetailsView({super.key});
@@ -146,50 +146,8 @@ class _MovieDetailsViewState extends State<MovieDetailsView> {
                         if (moviesSuggestions.isEmpty)
                           Image.asset(PngManager.emptyBg),
                         if (moviesSuggestions.isNotEmpty)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.appLocalizations!.similar,
-                                style: StyleInterManager.bold24.copyWith(
-                                  color: ColorsManager.white,
-                                ),
-                              ),
-                              SizedBox(height: 20.h),
-                              SizedBox(
-                                height: 800.h,
-                                child: GridView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 0.6,
-                                        mainAxisSpacing: 10.h,
-                                        crossAxisSpacing: 10.w,
-                                      ),
-                                  itemCount: moviesSuggestions.length,
-                                  itemBuilder: (context, index) =>
-                                      GestureDetector(
-                                       onTap: () {
-                                         Navigator.pushNamed(
-                                           context,
-                                           RoutesManager.movieDetailsView,
-                                           arguments: moviesSuggestions[index]?.id,
-                                         );
-                                       },
-                                        child: CustomFilmCard(
-                                          posterImage:
-                                              moviesSuggestions[index]
-                                                  ?.mediumCoverImage ??
-                                              "",
-                                          rate:
-                                              moviesSuggestions[index]?.rating ??
-                                              0.0,
-                                        ),
-                                      ),
-                                ),
-                              ),
-                            ],
+                          CustomSimilarMovies(
+                            moviesSuggestions: moviesSuggestions,
                           ),
                         SizedBox(height: 10.h),
                         CustomSummary(movie: movie),

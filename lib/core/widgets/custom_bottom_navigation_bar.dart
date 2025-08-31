@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
-import 'package:movie_app/widgets/custom_icon_bottom_bar.dart';
+import 'package:movie_app/core/widgets/custom_icon_bottom_bar.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final void Function(int) callBackFunction;

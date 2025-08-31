@@ -7,9 +7,9 @@ import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
-import 'package:movie_app/widgets/custom_elevated_button.dart';
-import 'package:movie_app/widgets/custom_history.dart';
-import 'package:movie_app/widgets/custom_profile_image.dart';
+import 'package:movie_app/core/widgets/custom_elevated_button.dart';
+import 'package:movie_app/core/widgets/custom_history.dart';
+import 'package:movie_app/core/widgets/custom_profile_image.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,7 +31,7 @@ class _ProfileViewState extends State<ProfileView> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               decoration: BoxDecoration(color: ColorsManager.black21),
               child: SafeArea(
                 child: Column(
@@ -39,10 +39,12 @@ class _ProfileViewState extends State<ProfileView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomProfileImage(
-                          name: user?.displayName ?? "Guest",
-                          imageProfile:
-                              user?.photoURL ?? "assets/images/avata1.png",
+                        Expanded(
+                          child: CustomProfileImage(
+                            name: user?.displayName ?? "Guest",
+                            imageProfile:
+                                user?.photoURL ?? "assets/images/avata1.png",
+                          ),
                         ),
                         Expanded(
                           child: CustomHistory(
@@ -155,6 +157,11 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
             ),
+            Expanded(child: TabBarView(
+
+                children: [
+
+            ]))
           ],
         ),
       ),

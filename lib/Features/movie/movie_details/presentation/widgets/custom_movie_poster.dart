@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
@@ -60,7 +61,10 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => Navigator.pushReplacementNamed(
+                      context,
+                      RoutesManager.mainLayoutView,
+                    ),
                     icon: Icon(
                       Icons.arrow_back_ios_new,
                       color: ColorsManager.white,
@@ -90,7 +94,6 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                 widget.movie?.title ?? "",
                 style: StyleInterManager.bold24.copyWith(
                   color: ColorsManager.white,
-
                 ),
                 textAlign: TextAlign.center,
               ),
