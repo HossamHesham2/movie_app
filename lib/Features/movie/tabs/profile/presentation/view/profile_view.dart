@@ -157,11 +157,20 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
             ),
-            Expanded(child: TabBarView(
-
-                children: [
-
-            ]))
+            Expanded(
+              child: TabBarView(
+                children: List.generate(2, (index) {
+                  return Center(
+                    child: Text(
+                      "List $index",
+                      style: StyleInterManager.bold20.copyWith(
+                        color: ColorsManager.yellowF6,
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
           ],
         ),
       ),
