@@ -28,6 +28,7 @@ class CustomFilmCard extends StatelessWidget {
 
               width: 230.w,
               height: 350.h,
+              fit: BoxFit.fill,
               placeholder: (context, url) => Center(
                 child: CircularProgressIndicator(color: ColorsManager.yellowFB),
               ),

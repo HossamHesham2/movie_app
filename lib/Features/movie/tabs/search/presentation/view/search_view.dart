@@ -50,13 +50,10 @@ class _SearchViewState extends State<SearchView> {
             );
           } else if (state is SearchSuccess) {
             final moviesList = state.moviesList;
-            if (filteredMoviesList.isEmpty) {
-              filteredMoviesList = moviesList;
-            }
 
             return SafeArea(
               child: Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: Column(
                   children: [
                     CustomTextFormField(
@@ -90,7 +87,12 @@ class _SearchViewState extends State<SearchView> {
                         });
                       },
                     ),
-                   SizedBox(height: 15.h,),
+                    SizedBox(height: 15.h),
+                    if (filteredMoviesList.isEmpty)
+                      Expanded(
+                        child: Image.asset(PngManager.emptyBg),
+                      ),
+                    if (filteredMoviesList.isNotEmpty)
                     Expanded(
                       child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

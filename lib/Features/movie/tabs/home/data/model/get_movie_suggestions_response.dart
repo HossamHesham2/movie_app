@@ -18,7 +18,6 @@ class GetMovieSuggestionsResponse {
     if (data != null) {
       map['data'] = data?.toJson();
     }
-
     return map;
   }
 }
@@ -87,7 +86,7 @@ class Movies {
     titleLong = json['title_long'];
     slug = json['slug'];
     year = json['year'];
-    rating = json['rating'];
+    rating = (json['rating'] as num?)?.toDouble(); // ✅ تعديل مهم
     runtime = json['runtime'];
     genres = json['genres'] != null ? json['genres'].cast<String>() : [];
     summary = json['summary'];

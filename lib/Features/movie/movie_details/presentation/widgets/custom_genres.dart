@@ -20,14 +20,15 @@ class CustomGenres extends StatelessWidget {
           style: StyleInterManager.bold24.copyWith(color: ColorsManager.white),
         ),
         SizedBox(height: 20.h),
-        Row(
-          spacing: 20.w,
+        Wrap(
+          spacing: 20,
+          runSpacing: 15.h,
           children: movie!.genres!.map((genres) {
             return Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.r),
-                color: ColorsManager.black28
+                color: ColorsManager.black28,
               ),
               child: Text(
                 genres,
