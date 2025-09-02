@@ -40,12 +40,10 @@ import '../../Features/movie/tabs/browse/domain/repository/browse_repository.dar
     as _i707;
 import '../../Features/movie/tabs/browse/presentation/cubits/browse_cubit.dart'
     as _i977;
-import '../../Features/movie/tabs/home/data/data_source_contract/home_movie_local_ds.dart'
-    as _i912;
+
 import '../../Features/movie/tabs/home/data/data_source_contract/home_movie_remote_ds.dart'
     as _i312;
-import '../../Features/movie/tabs/home/data/data_source_impl/home_movie_local_impl_ds.dart'
-    as _i384;
+
 import '../../Features/movie/tabs/home/data/data_source_impl/home_movie_remote_impl_ds.dart'
     as _i143;
 import '../../Features/movie/tabs/home/data/repository/home_repository_impl.dart'
@@ -105,8 +103,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1038.SearchMoviesRemoteDsImpl(gh<_i558.ApiConsumer>()));
     gh.factory<_i312.HomeMovieRemoteDs>(
         () => _i143.HomeMovieRemoteImplDs(gh<_i558.ApiConsumer>()));
-    gh.factory<_i912.HomeMovieLocalDs>(
-        () => _i384.HomeMovieLocalImplDs(gh<_i558.ApiConsumer>()));
+
     gh.factory<_i453.HomeRepository>(
         () => _i243.HomeRepositoryImpl(gh<_i312.HomeMovieRemoteDs>()));
     gh.factory<_i163.MovieDetailsRepository>(() =>
