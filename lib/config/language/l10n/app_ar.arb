@@ -65,5 +65,7 @@
   "pick_avatar": "اختر الصورة الرمزية",
   "delete_account": "حذف الحساب",
   "update_data": "تحديث البيانات",
-  "reset_password": "إعادة تعيين كلمة المرور"
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "added_to_list": "تمت الإضافة إلى القائمة",
+  "removed_from_list": "تم الحذف من القائمة"
 }

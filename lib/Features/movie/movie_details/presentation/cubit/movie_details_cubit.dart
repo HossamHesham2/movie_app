@@ -42,4 +42,21 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
       emit(MovieSuggestionFailure(e.toString()));
     }
   }
+
+  void toggleWatchlist({required Movie movie}) async {
+    emit(AddedWatchListLoading());
+    try {
+      final isAdded = await movieDetailsRepository.toggleWatchlist(
+        movie: movie,
+      );
+      emit(AddedWatchListSuccess(isAdded));
+    } catch (e) {
+      emit(AddedWatchListFailure(e.toString()));
+    }
+  }
+
+  void checkWatchlist({required int? movieId}) async {
+    final doc = await movieDetailsRepository.checkWatchlist(movieId: movieId!);
+    emit(CheckWatchListSuccess(doc.exists));
+  }
 }

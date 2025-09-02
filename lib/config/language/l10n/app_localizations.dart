@@ -499,6 +499,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset Password'**
   String get reset_password;
+
+  /// No description provided for @added_to_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to the list'**
+  String get added_to_list;
+
+  /// No description provided for @removed_from_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from the list'**
+  String get removed_from_list;
 }
 
 class _AppLocalizationsDelegate

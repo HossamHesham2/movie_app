@@ -215,4 +215,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get added_to_list => 'تمت الإضافة إلى القائمة';
+
+  @override
+  String get removed_from_list => 'تم الحذف من القائمة';
 }
