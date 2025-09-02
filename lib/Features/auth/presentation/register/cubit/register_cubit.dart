@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/auth/data/models/user_model.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
 
 part 'register_state.dart';
-
+@injectable
 class RegisterCubit extends Cubit<RegisterState> {
   final AuthRepository authRepository;
   final String boxName = "users";
@@ -35,12 +36,11 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!formKey.currentState!.validate()) {
       autoValidateMode = AutovalidateMode.always;
       emit(RegisterValidationError());
-      return false ;
+      return false;
     }
     if (passwordController.text != confirmPasswordController.text) {
       emit(RegisterFailure("Password not match"));
-      return false ;
-
+      return false;
     }
 
     emit(RegisterLoading());
@@ -71,6 +71,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           .collection('users')
           .doc(user.uid)
           .set(model.toJson());
+      // await FirebaseFirestore.instance.collection('favoriteMovies').doc(user.uid);
       userModel = model;
       emit(RegisterSuccess(model));
       nameController.clear();

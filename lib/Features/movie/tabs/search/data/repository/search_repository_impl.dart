@@ -1,10 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/tabs/search/data/data_source_contract/search_movies_remote_ds.dart';
 import 'package:movie_app/Features/movie/tabs/search/domain/repository/search_repository.dart';
 import 'package:movie_app/core/models/get_all_movie_response.dart';
-
+@Injectable(as:SearchRepository )
 class SearchRepositoryImpl extends SearchRepository {
   SearchMoviesRemoteDs searchMoviesRemoteDs;
-
+@factoryMethod
   SearchRepositoryImpl(this.searchMoviesRemoteDs);
 
   @override

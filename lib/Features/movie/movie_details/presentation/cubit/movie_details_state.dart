@@ -32,3 +32,21 @@ final class MovieSuggestionFailure extends MovieDetailsState {
 
   MovieSuggestionFailure(this.errorMessage);
 }
+
+final class AddedWatchListLoading extends MovieDetailsState {}
+
+final class AddedWatchListSuccess extends MovieDetailsState {
+  final bool isAdded ;
+
+  AddedWatchListSuccess(this.isAdded);
+}
+
+final class AddedWatchListFailure extends MovieDetailsState {
+  final String errorMessage;
+
+  AddedWatchListFailure(this.errorMessage);
+}
+final class CheckWatchListSuccess extends MovieDetailsState {
+  final bool isSaved;
+  CheckWatchListSuccess(this.isSaved);
+}

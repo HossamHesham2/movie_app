@@ -1,3 +1,6 @@
+import 'package:hive/hive.dart';
+part 'get_movie_details_response.g.dart';
+@HiveType(typeId: 4)
 class GetMovieDetailsResponse {
   GetMovieDetailsResponse({this.status, this.statusMessage, this.data});
 
@@ -7,8 +10,11 @@ class GetMovieDetailsResponse {
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
+  @HiveField(0)
   String? status;
+  @HiveField(1)
   String? statusMessage;
+  @HiveField(2)
   Data? data;
 
   Map<String, dynamic> toJson() {
@@ -23,6 +29,7 @@ class GetMovieDetailsResponse {
   }
 }
 
+@HiveType(typeId: 5)
 class Data {
   Data({this.movie});
 
@@ -30,6 +37,7 @@ class Data {
     movie = json['movie'] != null ? Movie.fromJson(json['movie']) : null;
   }
 
+  @HiveField(0)
   Movie? movie;
 
   Map<String, dynamic> toJson() {
@@ -41,6 +49,7 @@ class Data {
   }
 }
 
+@HiveType(typeId: 6)
 class Movie {
   Movie({
     this.id,
@@ -103,30 +112,55 @@ class Movie {
     dateUploadedUnix = json['date_uploaded_unix'];
   }
 
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? url;
+  @HiveField(2)
   String? imdbCode;
+  @HiveField(3)
   String? title;
+  @HiveField(4)
   String? titleEnglish;
+  @HiveField(5)
   String? titleLong;
+  @HiveField(6)
   String? slug;
+  @HiveField(7)
   int? year;
+  @HiveField(8)
   double? rating;
+  @HiveField(9)
   int? runtime;
+  @HiveField(10)
   List<String>? genres;
+  @HiveField(11)
   int? likeCount;
+  @HiveField(12)
   String? descriptionIntro;
+  @HiveField(13)
   String? descriptionFull;
+  @HiveField(14)
   String? ytTrailerCode;
+  @HiveField(15)
   String? language;
+  @HiveField(16)
   String? mpaRating;
+  @HiveField(17)
   String? backgroundImage;
+  @HiveField(18)
   String? backgroundImageOriginal;
+  @HiveField(19)
   String? smallCoverImage;
+  @HiveField(20)
   String? mediumCoverImage;
+  @HiveField(21)
   String? largeCoverImage;
+  @HiveField(22)
   List<Torrents>? torrents;
+  @HiveField(23)
   String? dateUploaded;
+  @HiveField(24)
   int? dateUploadedUnix;
 
   Map<String, dynamic> toJson() {
@@ -162,6 +196,7 @@ class Movie {
   }
 }
 
+@HiveType(typeId: 7)
 class Torrents {
   Torrents({
     this.url,
@@ -197,19 +232,33 @@ class Torrents {
     dateUploadedUnix = json['date_uploaded_unix'];
   }
 
+  @HiveField(0)
   String? url;
+  @HiveField(1)
   String? hash;
+  @HiveField(2)
   String? quality;
+  @HiveField(3)
   String? type;
+  @HiveField(4)
   String? isRepack;
+  @HiveField(5)
   String? videoCodec;
+  @HiveField(6)
   String? bitDepth;
+  @HiveField(7)
   String? audioChannels;
+  @HiveField(8)
   int? seeds;
+  @HiveField(9)
   int? peers;
+  @HiveField(10)
   String? size;
+  @HiveField(11)
   int? sizeBytes;
+  @HiveField(12)
   String? dateUploaded;
+  @HiveField(13)
   int? dateUploadedUnix;
 
   Map<String, dynamic> toJson() {

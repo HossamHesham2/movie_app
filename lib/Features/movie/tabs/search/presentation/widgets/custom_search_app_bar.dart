@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
-import 'package:movie_app/widgets/custom_text_form_field.dart';
+import 'package:movie_app/core/widgets/custom_text_form_field.dart';
 
 class CustomSearchAppBar extends StatelessWidget
     implements PreferredSizeWidget {

@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/movie_details/data/data_source_contract/movie_details_movie_remote_ds.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/model/get_movie_suggestions_response.dart';
 
 import 'package:movie_app/core/database/api/api_consumer.dart';
 import 'package:movie_app/core/database/api/end_points.dart';
 import 'package:movie_app/core/errors/server_exception.dart';
-
+@Injectable(as:MovieDetailsRemoteDs )
 class MovieDetailsRemoteImplDs extends MovieDetailsRemoteDs {
   ApiConsumer apiConsumer;
-
+  @factoryMethod
   MovieDetailsRemoteImplDs(this.apiConsumer);
 
   @override

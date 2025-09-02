@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
+import 'package:movie_app/Features/movie/movie_details/presentation/cubit/movie_details_cubit.dart';
+import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
@@ -17,7 +21,15 @@ class CustomMoviePoster extends StatefulWidget {
 }
 
 class _CustomMoviePosterState extends State<CustomMoviePoster> {
-  bool isSaved = false;
+  User? user = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.movie != null) {
+      MovieDetailsCubit.get(context).checkWatchlist(movieId: widget.movie!.id);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,26 +72,51 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () => Navigator.pushReplacementNamed(
+                      context,
+                      RoutesManager.mainLayoutView,
+                    ),
                     icon: Icon(
                       Icons.arrow_back_ios_new,
                       color: ColorsManager.white,
                       size: 30.sp,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isSaved = !isSaved;
-                      });
-                    },
-                    icon: SvgPicture.asset(
-                      SvgsManager.favIcon,
+                  BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      bool isSaved = false;
+                      if (state is AddedWatchListSuccess) {
+                        isSaved = state.isAdded;
+                      } else if (state is CheckWatchListSuccess) {
+                        isSaved = state.isSaved;
+                      }
+                      return state is AddedWatchListLoading
+                          ? Center(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 10.h),
+                                width: 20.w,
+                                height: 20.w,
+                                child: CircularProgressIndicator(
+                                  color: ColorsManager.yellowF6,
+                                ),
+                              ),
+                            )
+                          : IconButton(
+                              onPressed: () async {
+                                MovieDetailsCubit.get(
+                                  context,
+                                ).toggleWatchlist(movie: widget.movie!);
+                              },
+                              icon: SvgPicture.asset(
+                                SvgsManager.favIcon,
 
-                      color: isSaved
-                          ? ColorsManager.yellowFB
-                          : ColorsManager.white,
-                    ),
+                                color: isSaved
+                                    ? ColorsManager.yellowFB
+                                    : ColorsManager.white,
+                              ),
+                            );
+                    },
                   ),
                 ],
               ),
@@ -90,7 +127,6 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                 widget.movie?.title ?? "",
                 style: StyleInterManager.bold24.copyWith(
                   color: ColorsManager.white,
-
                 ),
                 textAlign: TextAlign.center,
               ),

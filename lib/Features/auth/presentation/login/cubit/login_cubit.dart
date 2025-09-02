@@ -2,12 +2,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_state.dart';
-
+@injectable
 class LoginCubit extends Cubit<LoginState> {
   final AuthRepository authRepository;
 

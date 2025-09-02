@@ -2,14 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_tab_bar_text.dart';
+import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_watch_list.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/constants/constants_manager.dart';
 import 'package:movie_app/core/extensions/build_context_extension.dart';
 import 'package:movie_app/core/utils/color_managers.dart';
 import 'package:movie_app/core/utils/style_inter_manager.dart';
-import 'package:movie_app/widgets/custom_elevated_button.dart';
-import 'package:movie_app/widgets/custom_history.dart';
-import 'package:movie_app/widgets/custom_profile_image.dart';
+import 'package:movie_app/core/widgets/custom_elevated_button.dart';
+import 'package:movie_app/core/widgets/custom_history.dart';
+import 'package:movie_app/core/widgets/custom_profile_image.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,7 +22,15 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final user = FirebaseAuth.instance.currentUser;
+  User? user;
+  int? counterWatchList;
+  String? newAvatar;
+
+  @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +40,7 @@ class _ProfileViewState extends State<ProfileView> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               decoration: BoxDecoration(color: ColorsManager.black21),
               child: SafeArea(
                 child: Column(
@@ -39,14 +48,16 @@ class _ProfileViewState extends State<ProfileView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomProfileImage(
-                          name: user?.displayName ?? "Guest",
-                          imageProfile:
-                              user?.photoURL ?? "assets/images/avata1.png",
+                        Expanded(
+                          child: CustomProfileImage(
+                            name: user?.displayName ?? "Guest",
+                            imageProfile:
+                                user?.photoURL ?? "assets/images/avata1.png",
+                          ),
                         ),
                         Expanded(
                           child: CustomHistory(
-                            number: "10",
+                            number: counterWatchList.toString(),
                             text: context.appLocalizations!.wish_list,
                           ),
                         ),
@@ -68,7 +79,12 @@ class _ProfileViewState extends State<ProfileView> {
                             borderColor: ColorsManager.yellowFB,
                             backgroundColor: ColorsManager.yellowFB,
                             textColor: ColorsManager.black12,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.editProfileView,
+                              );
+                            },
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -153,6 +169,27 @@ class _ProfileViewState extends State<ProfileView> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  CustomWatchList(counterWatchList: (count) {
+                    setState(() {
+                      counterWatchList = count ;
+                    });
+                  },),
+                  Center(
+                    child: Container(
+                      child: Text(
+                        "data1",
+                        style: StyleInterManager.bold20.copyWith(
+                          color: ColorsManager.yellowF6,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

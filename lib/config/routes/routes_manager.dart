@@ -5,8 +5,9 @@ import 'package:movie_app/Features/auth/presentation/register/view/register_view
 
 import 'package:movie_app/Features/movie/main_layout/main_layout_view.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/view/movie_details_view.dart';
-import 'package:movie_app/Features/movie/tabs/browse/view/browse_view.dart';
+import 'package:movie_app/Features/movie/tabs/browse/presentation/view/browse_view.dart';
 import 'package:movie_app/Features/movie/tabs/home/presentation/home/view/home_view.dart';
+import 'package:movie_app/Features/movie/tabs/profile/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/view/profile_view.dart';
 import 'package:movie_app/Features/movie/tabs/search/presentation/view/search_view.dart';
 import 'package:movie_app/Features/onBoardingView/on_boarding_view.dart';
@@ -22,6 +23,7 @@ class RoutesManager {
   static const String searchView = "/searchView";
   static const String browseView = "/browseView";
   static const String profileView = "/profileView";
+  static const String editProfileView = "/editProfileView";
 
   static Route? getRoutes(RouteSettings settings) {
     switch (settings.name) {
@@ -48,6 +50,8 @@ class RoutesManager {
         return CupertinoPageRoute(builder: (context) => BrowseView());
       case profileView:
         return CupertinoPageRoute(builder: (context) => ProfileView());
+      case editProfileView:
+        return CupertinoPageRoute(builder: (context) => EditProfileView());
     }
     return null;
   }

@@ -475,6 +475,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get search;
+
+  /// No description provided for @pick_avatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick Avatar'**
+  String get pick_avatar;
+
+  /// No description provided for @delete_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get delete_account;
+
+  /// No description provided for @update_data.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Data'**
+  String get update_data;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get reset_password;
+
+  /// No description provided for @added_to_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Added to the list'**
+  String get added_to_list;
+
+  /// No description provided for @removed_from_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from the list'**
+  String get removed_from_list;
 }
 
 class _AppLocalizationsDelegate
