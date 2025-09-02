@@ -1,16 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:injectable/injectable.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 import 'package:movie_app/Features/movie/movie_details/domain/repository/movie_details_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/model/get_movie_suggestions_response.dart';
 
 part 'movie_details_state.dart';
 
+@injectable
 class MovieDetailsCubit extends Cubit<MovieDetailsState> {
   MovieDetailsRepository movieDetailsRepository;
   GetMovieDetailsResponse? getMovieDetailsResponse;
   GetMovieSuggestionsResponse? getMovieSuggestionsResponse;
-
   MovieDetailsCubit(this.movieDetailsRepository) : super(MovieDetailsInitial());
 
   static MovieDetailsCubit get(BuildContext context) =>

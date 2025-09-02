@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/cubit/movie_details_cubit.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
 import 'package:movie_app/core/utils/assets_manager.dart';

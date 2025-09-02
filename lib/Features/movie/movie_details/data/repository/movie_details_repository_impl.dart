@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/movie_details/data/data_source_contract/movie_details_movie_remote_ds.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 import 'package:movie_app/Features/movie/movie_details/domain/repository/movie_details_repository.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/model/get_movie_suggestions_response.dart';
-
+@Injectable(as:MovieDetailsRepository)
 class MovieDetailsRepositoryImpl extends MovieDetailsRepository {
   final MovieDetailsRemoteDs movieDetailsMovieRemoteDs;
-
+  @factoryMethod
   MovieDetailsRepositoryImpl(this.movieDetailsMovieRemoteDs);
 
   @override

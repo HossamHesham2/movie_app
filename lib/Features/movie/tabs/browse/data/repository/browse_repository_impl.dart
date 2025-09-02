@@ -1,10 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/tabs/browse/data/data_source/data_remote/browse_remote_ds.dart';
 import 'package:movie_app/Features/movie/tabs/browse/domain/repository/browse_repository.dart';
 import 'package:movie_app/core/models/get_all_movie_response.dart';
-
+@Injectable(as: BrowseRepository)
 class BrowseRepositoryImpl extends BrowseRepository {
   BrowseRemoteDs browseRemoteDs;
-
+@factoryMethod
   BrowseRepositoryImpl(this.browseRemoteDs);
 
   @override

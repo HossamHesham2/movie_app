@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/tabs/search/domain/repository/search_repository.dart';
 import 'package:movie_app/core/models/get_all_movie_response.dart';
 
 part 'search_state.dart';
-
+@injectable
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this.searchRepository) : super(SearchInitial());
 

@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:movie_app/Features/movie/tabs/browse/domain/repository/browse_repository.dart';
 import 'package:movie_app/core/models/get_all_movie_response.dart';
 
 part 'browse_state.dart';
-
+@injectable
 class BrowseCubit extends Cubit<BrowseState> {
   BrowseRepository browseRepository;
 

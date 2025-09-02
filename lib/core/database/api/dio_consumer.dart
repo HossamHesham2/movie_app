@@ -1,17 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/database/api/api_consumer.dart';
 import 'package:movie_app/core/database/api/app_interceptor.dart';
 import 'package:movie_app/core/database/api/end_points.dart';
-
+@Injectable(as: ApiConsumer)
 class DioConsumer extends ApiConsumer {
   final Dio dio;
-
+@factoryMethod
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseURL;
     dio.interceptors.add(AppInterceptor());
   }
 
-  // get
+  //get
 
   @override
   Future get(

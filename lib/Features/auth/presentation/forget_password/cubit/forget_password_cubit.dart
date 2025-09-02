@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
 
 part 'forget_password_state.dart';
-
+@injectable
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   AuthRepository authRepository;
   final TextEditingController emailController = TextEditingController();

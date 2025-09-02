@@ -42,15 +42,15 @@ class CustomElevatedButton extends StatelessWidget {
           spacing: 10.w,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (context.isEnglish) ?prefixWidget,
-            if (context.isArabic) ?suffixWidget,
+            if (context.isEnglish && prefixWidget != null) prefixWidget!,
+            if (context.isArabic && suffixWidget != null) suffixWidget!,
 
             Text(
               text,
               style: StyleInterManager.regular20.copyWith(color: textColor),
             ),
-            if (context.isArabic) ?prefixWidget,
-            if (context.isEnglish) ?suffixWidget,
+            if (context.isArabic && prefixWidget != null) prefixWidget!,
+            if (context.isEnglish && suffixWidget != null) suffixWidget!,
           ],
         ),
       ),

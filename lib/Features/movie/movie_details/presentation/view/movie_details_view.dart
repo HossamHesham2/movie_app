@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/cubit/movie_details_cubit.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_box_container.dart';
 import 'package:movie_app/Features/movie/movie_details/presentation/widgets/custom_genres.dart';

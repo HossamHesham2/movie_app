@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/core/models/get_all_movie_response.dart';
 import 'package:movie_app/Features/movie/tabs/home/domain/repository/home_repository.dart';
 
 part 'home_state.dart';
-
+@injectable
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepository homeRepository;
 

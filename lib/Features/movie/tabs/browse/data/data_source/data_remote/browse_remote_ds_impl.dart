@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/tabs/browse/data/data_source/data_remote/browse_remote_ds.dart';
 import 'package:movie_app/core/database/api/api_consumer.dart';
 import 'package:movie_app/core/database/api/end_points.dart';
 import 'package:movie_app/core/errors/server_exception.dart';
 import 'package:movie_app/core/models/get_all_movie_response.dart';
-
+@Injectable(as: BrowseRemoteDs)
 class BrowseRemoteDsImpl extends BrowseRemoteDs {
   ApiConsumer apiConsumer;
-
+@factoryMethod
   BrowseRemoteDsImpl(this.apiConsumer);
 
   @override

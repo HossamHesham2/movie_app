@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_detailes_response.dart';
+import 'package:injectable/injectable.dart';
+import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 
 part 'profile_state.dart';
-
+@injectable
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
 

@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
-
+import 'package:injectable/injectable.dart';
+@injectable
 class CacheHelper {
   static Future<Box<T>> _openBox<T>(String boxName) async {
     if (!Hive.isBoxOpen(boxName)) {
