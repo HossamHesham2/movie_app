@@ -21,7 +21,19 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final user = FirebaseAuth.instance.currentUser;
+
+  User? user;
+
+  String? newAvatar;
+
+  @override
+  void initState() {
+    super.initState();
+    user = FirebaseAuth.instance.currentUser;
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +55,7 @@ class _ProfileViewState extends State<ProfileView> {
                           child: CustomProfileImage(
                             name: user?.displayName ?? "Guest",
                             imageProfile:
-                                user?.photoURL ?? "assets/images/avata1.png",
+                            user?.photoURL ?? "assets/images/avata1.png",
                           ),
                         ),
                         Expanded(
@@ -70,7 +82,12 @@ class _ProfileViewState extends State<ProfileView> {
                             borderColor: ColorsManager.yellowFB,
                             backgroundColor: ColorsManager.yellowFB,
                             textColor: ColorsManager.black12,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                RoutesManager.editProfileView,
+                              );
+                            },
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -86,7 +103,7 @@ class _ProfileViewState extends State<ProfileView> {
                             textColor: ColorsManager.white,
                             onPressed: () async {
                               final prefs =
-                                  await SharedPreferences.getInstance();
+                              await SharedPreferences.getInstance();
 
                               await prefs.setBool(
                                 ConstantsManager.isLoggedInKey,
@@ -95,34 +112,37 @@ class _ProfileViewState extends State<ProfileView> {
                               await FirebaseAuth.instance.signOut();
                               showDialog(
                                 context: context,
-                                builder: (context) => AlertDialog(
-                                  backgroundColor: ColorsManager.black12,
-                                  title: Text(
-                                    context.appLocalizations!.logout,
-                                    style: StyleInterManager.bold20.copyWith(
-                                      color: ColorsManager.white,
+                                builder: (context) =>
+                                    AlertDialog(
+                                      backgroundColor: ColorsManager.black12,
+                                      title: Text(
+                                        context.appLocalizations!.logout,
+                                        style: StyleInterManager.bold20
+                                            .copyWith(
+                                          color: ColorsManager.white,
+                                        ),
+                                      ),
+                                      content: Text(
+                                        context
+                                            .appLocalizations!
+                                            .logout_successfully,
+                                        style: StyleInterManager.regular16
+                                            .copyWith(
+                                          color: ColorsManager.white,
+                                        ),
+                                      ),
+                                      actions: [
+                                        CustomTextButton(
+                                          text: context.appLocalizations!.ok,
+                                          onPressed: () =>
+                                              Navigator.pushNamedAndRemoveUntil(
+                                                context,
+                                                RoutesManager.loginView,
+                                                    (route) => false,
+                                              ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  content: Text(
-                                    context
-                                        .appLocalizations!
-                                        .logout_successfully,
-                                    style: StyleInterManager.regular16.copyWith(
-                                      color: ColorsManager.white,
-                                    ),
-                                  ),
-                                  actions: [
-                                    CustomTextButton(
-                                      text: context.appLocalizations!.ok,
-                                      onPressed: () =>
-                                          Navigator.pushNamedAndRemoveUntil(
-                                            context,
-                                            RoutesManager.loginView,
-                                            (route) => false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
                               );
                             },
                           ),
@@ -139,7 +159,9 @@ class _ProfileViewState extends State<ProfileView> {
                           color: ColorsManager.yellowFB,
                         ),
                         insets: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.sizeOf(context).width / 2.88,
+                          horizontal: MediaQuery
+                              .sizeOf(context)
+                              .width / 2.88,
                         ),
                       ),
                       tabs: [

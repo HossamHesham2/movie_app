@@ -61,5 +61,9 @@
   "summary": "Summary",
   "cast": "Cast",
   "genres": "Genres",
-  "search": "Search"
+  "search": "Search",
+  "pick_avatar": "Pick Avatar",
+  "delete_account": "Delete Account",
+  "update_data": "Update Data",
+  "reset_password": "Reset Password"
 }

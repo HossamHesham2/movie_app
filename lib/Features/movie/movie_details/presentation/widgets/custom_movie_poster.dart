@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,6 +20,7 @@ class CustomMoviePoster extends StatefulWidget {
 
 class _CustomMoviePosterState extends State<CustomMoviePoster> {
   bool isSaved = false;
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {
+                    onPressed: () async {
                       setState(() {
                         isSaved = !isSaved;
                       });

@@ -35,12 +35,11 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (!formKey.currentState!.validate()) {
       autoValidateMode = AutovalidateMode.always;
       emit(RegisterValidationError());
-      return false ;
+      return false;
     }
     if (passwordController.text != confirmPasswordController.text) {
       emit(RegisterFailure("Password not match"));
-      return false ;
-
+      return false;
     }
 
     emit(RegisterLoading());
@@ -71,6 +70,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           .collection('users')
           .doc(user.uid)
           .set(model.toJson());
+      // await FirebaseFirestore.instance.collection('favoriteMovies').doc(user.uid);
       userModel = model;
       emit(RegisterSuccess(model));
       nameController.clear();

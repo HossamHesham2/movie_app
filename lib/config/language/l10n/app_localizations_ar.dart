@@ -203,4 +203,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get search => 'بحث';
+
+  @override
+  String get pick_avatar => 'اختر الصورة الرمزية';
+
+  @override
+  String get delete_account => 'حذف الحساب';
+
+  @override
+  String get update_data => 'تحديث البيانات';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
 }

@@ -16,6 +16,7 @@ import 'package:movie_app/Features/movie/tabs/browse/presentation/cubits/browse_
 import 'package:movie_app/Features/movie/tabs/home/data/data_source_impl/home_movie_remote_impl_ds.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/repository/home_repository_impl.dart';
 import 'package:movie_app/Features/movie/tabs/home/presentation/home/cubits/home_cubit.dart';
+import 'package:movie_app/Features/movie/tabs/profile/edit_profile/presentation/cubit/edit_profile_cubit.dart';
 import 'package:movie_app/Features/movie/tabs/search/data/data_source_impl/search_movies_remote_impl_ds.dart';
 import 'package:movie_app/Features/movie/tabs/search/data/repository/search_repository_impl.dart';
 import 'package:movie_app/Features/movie/tabs/search/presentation/cubits/search_cubit.dart';
@@ -70,6 +71,9 @@ void main() async {
           create: (context) => BrowseCubit(
             BrowseRepositoryImpl(BrowseRemoteDsImpl(DioConsumer(dio: Dio()))),
           ),
+        ),
+        BlocProvider<EditProfileCubit>(
+          create: (context) => EditProfileCubit(),
         ),
       ],
       child: MyApp(),

@@ -21,11 +21,7 @@ class ForgetPasswordView extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: context.appLocalizations!.forget_password,
-        onBack: () => Navigator.pushNamedAndRemoveUntil(
-          context,
-          RoutesManager.loginView,
-          (route) => true,
-        ),
+        onBack: () => Navigator.pop(context),
       ),
       body: BlocProvider<ForgetPasswordCubit>(
         create: (context) => ForgetPasswordCubit(AuthRepositoryImpl()),

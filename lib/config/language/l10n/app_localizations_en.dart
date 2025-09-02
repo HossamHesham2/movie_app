@@ -202,4 +202,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get search => 'Search';
+
+  @override
+  String get pick_avatar => 'Pick Avatar';
+
+  @override
+  String get delete_account => 'Delete Account';
+
+  @override
+  String get update_data => 'Update Data';
+
+  @override
+  String get reset_password => 'Reset Password';
 }
