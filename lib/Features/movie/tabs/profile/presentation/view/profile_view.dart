@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_history_list.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_tab_bar_text.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_watch_list.dart';
 import 'package:movie_app/config/routes/routes_manager.dart';
@@ -24,6 +25,7 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   User? user;
   int? counterWatchList;
+  int? counterHistoryList;
   String? newAvatar;
 
   @override
@@ -57,13 +59,13 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                         Expanded(
                           child: CustomHistory(
-                            number: counterWatchList.toString(),
+                            number: (counterWatchList ?? 0).toString(),
                             text: context.appLocalizations!.wish_list,
                           ),
                         ),
                         Expanded(
                           child: CustomHistory(
-                            number: "10",
+                            number: (counterHistoryList ?? 0).toString(),
                             text: context.appLocalizations!.history,
                           ),
                         ),
@@ -174,20 +176,19 @@ class _ProfileViewState extends State<ProfileView> {
             Expanded(
               child: TabBarView(
                 children: [
-                  CustomWatchList(counterWatchList: (count) {
-                    setState(() {
-                      counterWatchList = count ;
-                    });
-                  },),
-                  Center(
-                    child: Container(
-                      child: Text(
-                        "data1",
-                        style: StyleInterManager.bold20.copyWith(
-                          color: ColorsManager.yellowF6,
-                        ),
-                      ),
-                    ),
+                  CustomWatchList(
+                    counterWatchList: (count) {
+                      setState(() {
+                        counterWatchList = count;
+                      });
+                    },
+                  ),
+                  CustomHistoryList(
+                    counterHistoryList: (count) {
+                      setState(() {
+                        counterHistoryList = count;
+                      });
+                    },
                   ),
                 ],
               ),

@@ -5,9 +5,11 @@ import 'package:movie_app/Features/movie/movie_details/data/data_source_contract
 import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 import 'package:movie_app/Features/movie/movie_details/domain/repository/movie_details_repository.dart';
 import 'package:movie_app/Features/movie/tabs/home/data/model/get_movie_suggestions_response.dart';
-@Injectable(as:MovieDetailsRepository)
+
+@Injectable(as: MovieDetailsRepository)
 class MovieDetailsRepositoryImpl extends MovieDetailsRepository {
   final MovieDetailsRemoteDs movieDetailsMovieRemoteDs;
+
   @factoryMethod
   MovieDetailsRepositoryImpl(this.movieDetailsMovieRemoteDs);
 
@@ -56,9 +58,10 @@ class MovieDetailsRepositoryImpl extends MovieDetailsRepository {
   }
 
   @override
-  Future<DocumentSnapshot<Map<String, dynamic>>> checkWatchlist({required int movieId}) async {
+  Future<DocumentSnapshot<Map<String, dynamic>>> checkWatchlist({
+    required int movieId,
+  }) async {
     final user = FirebaseAuth.instance.currentUser;
-
 
     final doc = await FirebaseFirestore.instance
         .collection('users')
@@ -66,6 +69,39 @@ class MovieDetailsRepositoryImpl extends MovieDetailsRepository {
         .collection('watchlist')
         .doc(movieId.toString())
         .get();
-    return doc ;
+    return doc;
+  }
+
+  @override
+  Future<void> addToHistoryList({required Movie movie}) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) throw Exception("User not logged in");
+
+    final userId = user.uid;
+    final historyDoc = FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('historyList')
+        .doc(movie.id.toString());
+
+    await historyDoc.set({
+      ...movie.toJson(),
+      "viewedAt": FieldValue.serverTimestamp(),
+    });
+  }
+
+  @override
+  Future<DocumentSnapshot<Map<String, dynamic>>> checkHistoryList({
+    required int movieId,
+  }) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user?.uid)
+        .collection('historyList')
+        .doc(movieId.toString())
+        .get();
+    return doc;
   }
 }
