@@ -83,6 +83,10 @@ class _MovieDetailsViewState extends State<MovieDetailsView> {
 
           if (state is MovieDetailsSuccess) {
             movie = state.movie?.data?.movie;
+            if (movie != null) {
+              print("Movie Added to history");
+              MovieDetailsCubit.get(context).addToHistoryList(movie: movie!);
+            }
             if (movieId != null) {
               MovieDetailsCubit.get(
                 context,

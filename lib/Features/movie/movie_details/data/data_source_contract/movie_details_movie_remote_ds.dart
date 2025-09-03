@@ -6,4 +6,5 @@ abstract class MovieDetailsRemoteDs {
   Future<GetMovieSuggestionsResponse?> getMovieSuggestions({
     required int movieId,
   });
+
 }

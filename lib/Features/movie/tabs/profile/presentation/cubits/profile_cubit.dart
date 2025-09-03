@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/movie/movie_details/data/model/get_movie_details_response.dart';
 
 part 'profile_state.dart';
+
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
@@ -34,6 +35,29 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(GetMoviesWatchListSuccess(movies, movies.length));
     } on Exception catch (e) {
       emit(GetMoviesWatchListFailure(e.toString()));
+    }
+  }
+
+  void getMoviesHistory() async {
+    emit(GetMoviesHistoryLoading());
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        emit(GetMoviesHistoryFailure("User not logged in"));
+        return;
+      }
+      final historySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .collection('historyList')
+          .get();
+      List<Movie?> moviesHistory = [];
+      for (var doc in historySnapshot.docs) {
+        moviesHistory.add(Movie.fromJson(doc.data()));
+      }
+      emit(GetMoviesHistorySuccess(moviesHistory, moviesHistory.length));
+    } on Exception catch (e) {
+      emit(GetMoviesHistoryFailure(e.toString()));
     }
   }
 }

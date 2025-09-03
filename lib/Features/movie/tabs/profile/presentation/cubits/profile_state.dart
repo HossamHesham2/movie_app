@@ -19,3 +19,19 @@ final class GetMoviesWatchListFailure extends ProfileState {
 
   GetMoviesWatchListFailure(this.errorMessage);
 }
+
+
+final class GetMoviesHistoryLoading extends ProfileState {}
+
+final class GetMoviesHistorySuccess extends ProfileState {
+  final List<Movie?> moviesHistory;
+  final int count ;
+
+  GetMoviesHistorySuccess(this.moviesHistory, this.count);
+}
+
+final class GetMoviesHistoryFailure extends ProfileState {
+  final String errorMessage;
+
+  GetMoviesHistoryFailure(this.errorMessage);
+}

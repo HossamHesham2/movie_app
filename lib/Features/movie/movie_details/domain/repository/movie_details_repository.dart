@@ -9,4 +9,6 @@ abstract class MovieDetailsRepository {
   });
   Future<bool> toggleWatchlist({required Movie movie});
   Future<DocumentSnapshot<Map<String, dynamic>>> checkWatchlist({required int movieId}) ;
+  Future<void> addToHistoryList({required Movie movie});
+  Future<DocumentSnapshot<Map<String, dynamic>>> checkHistoryList({required int movieId}) ;
 }
