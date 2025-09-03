@@ -70,7 +70,7 @@ import '../../Features/movie/tabs/search/presentation/cubits/search_cubit.dart'
     as _i832;
 import '../database/api/api_consumer.dart' as _i558;
 import '../database/api/dio_consumer.dart' as _i58;
-import '../database/cash/cashe_helper.dart' as _i936;
+import '../database/cash/cash_helper.dart' as _i432;
 import 'dependency_injection.dart' as _i9;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -85,10 +85,11 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i936.CacheHelper>(() => _i936.CacheHelper());
+    gh.factory<_i432.CashHelper>(() => _i432.CashHelper());
     gh.factory<_i1000.EditProfileCubit>(() => _i1000.EditProfileCubit());
     gh.factory<_i61.ProfileCubit>(() => _i61.ProfileCubit());
     gh.lazySingleton<_i361.Dio>(() => registerModule.dio);
+    gh.factory<_i912.HomeMovieLocaleDs>(() => _i384.HomeMovieLocalImplDs());
     gh.factory<_i634.AuthRepository>(() => _i298.AuthRepositoryImpl());
     gh.factory<_i187.ForgetPasswordCubit>(
         () => _i187.ForgetPasswordCubit(gh<_i634.AuthRepository>()));
@@ -105,10 +106,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1038.SearchMoviesRemoteDsImpl(gh<_i558.ApiConsumer>()));
     gh.factory<_i312.HomeMovieRemoteDs>(
         () => _i143.HomeMovieRemoteImplDs(gh<_i558.ApiConsumer>()));
-    gh.factory<_i912.HomeMovieLocalDs>(
-        () => _i384.HomeMovieLocalImplDs(gh<_i558.ApiConsumer>()));
-    gh.factory<_i453.HomeRepository>(
-        () => _i243.HomeRepositoryImpl(gh<_i312.HomeMovieRemoteDs>()));
+    gh.factory<_i453.HomeRepository>(() => _i243.HomeRepositoryImpl(
+          gh<_i312.HomeMovieRemoteDs>(),
+          gh<_i912.HomeMovieLocaleDs>(),
+        ));
+    gh.factory<_i482.HomeCubit>(
+        () => _i482.HomeCubit(gh<_i453.HomeRepository>()));
     gh.factory<_i163.MovieDetailsRepository>(() =>
         _i323.MovieDetailsRepositoryImpl(gh<_i23.MovieDetailsRemoteDs>()));
     gh.factory<_i92.SearchRepository>(
@@ -119,8 +122,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i236.MovieDetailsCubit(gh<_i163.MovieDetailsRepository>()));
     gh.factory<_i832.SearchCubit>(
         () => _i832.SearchCubit(gh<_i92.SearchRepository>()));
-    gh.factory<_i482.HomeCubit>(
-        () => _i482.HomeCubit(gh<_i453.HomeRepository>()));
     gh.factory<_i977.BrowseCubit>(
         () => _i977.BrowseCubit(gh<_i707.BrowseRepository>()));
     return this;
