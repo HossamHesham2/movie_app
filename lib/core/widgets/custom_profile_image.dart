@@ -13,11 +13,33 @@ class CustomProfileImage extends StatelessWidget {
     required this.imageProfile,
   });
 
+  bool _isNetworkImage(String path) {
+    return path.startsWith('http://') || path.startsWith('https://');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(radius: 50.r, child: Image.asset(imageProfile)),
+        CircleAvatar(
+          radius: 50.r,
+          backgroundColor: ColorsManager.greyAD,
+          child: ClipOval(
+            child: _isNetworkImage(imageProfile)
+                ? Image.network(
+              imageProfile,
+              fit: BoxFit.cover,
+              width: 100.r,
+              height: 100.r,
+            )
+                : Image.asset(
+              imageProfile,
+              fit: BoxFit.cover,
+              width: 100.r,
+              height: 100.r,
+            ),
+          ),
+        ),
         SizedBox(height: 20.h),
         Text(
           name,

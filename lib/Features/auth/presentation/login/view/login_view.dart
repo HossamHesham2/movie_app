@@ -200,7 +200,9 @@ class _LoginViewState extends State<LoginView> {
                         backgroundColor: ColorsManager.yellowF6,
                         borderColor: ColorsManager.yellowF6,
                         textColor: ColorsManager.black28,
-                        onPressed: () {},
+                        onPressed: () async{
+                         await LoginCubit.get(context).signInWithGoogle();
+                        },
                       ),
                       SizedBox(height: 20.h),
                       // TODO : Language Toggle
