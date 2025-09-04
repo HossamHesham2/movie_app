@@ -3,9 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 part 'edit_profile_state.dart';
+
 @injectable
 class EditProfileCubit extends Cubit<EditProfileState> {
   User? user = FirebaseAuth.instance.currentUser;
@@ -77,6 +79,40 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       }
     } catch (e) {
       emit(DeleteProfileFailure("Error deleting account: $e"));
+    }
+  }
+
+  Future<void> deleteAccountWithGoogle() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      debugPrint("No user is logged in ❌");
+      return;
+    }
+
+    try {
+      await GoogleSignIn.instance.initialize();
+      final googleUser = await GoogleSignIn.instance.authenticate();
+
+      final googleAuth = await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      // Re-authenticate with Firebase
+      await user.reauthenticateWithCredential(credential);
+
+      // حذف الحساب من Firebase
+      await user.delete();
+
+      // Disconnect من Google
+      await GoogleSignIn.instance.disconnect();
+
+      debugPrint("✅ Account deleted successfully");
+    } on FirebaseAuthException catch (e) {
+      debugPrint("FirebaseAuthException: ${e.message}");
+    } catch (e) {
+      debugPrint("Error deleting account: $e");
     }
   }
 }

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/Features/auth/presentation/widgets/custom_text_button.dart';
 import 'package:movie_app/Features/movie/tabs/profile/edit_profile/presentation/cubit/edit_profile_cubit.dart';
 import 'package:movie_app/Features/movie/tabs/profile/edit_profile/presentation/widgets/custom_edit_profile_app_bar.dart';
 import 'package:movie_app/Features/movie/tabs/profile/edit_profile/presentation/widgets/custom_pick_avatars.dart';
@@ -30,53 +29,95 @@ class _EditProfileViewState extends State<EditProfileView> {
 
   @override
   void initState() {
-
     super.initState();
     user = FirebaseAuth.instance.currentUser;
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EditProfileCubit, EditProfileState>(
-      builder: (context, state) {
+    return BlocConsumer<EditProfileCubit, EditProfileState>(
+      listener: (context, state) {
         if (state is DeleteProfileSuccess) {
           showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-              backgroundColor: ColorsManager.black12,
+            builder: (_) => AlertDialog(
+              backgroundColor: ColorsManager.black28,
+
               title: Text(
-                context.appLocalizations!.error,
-                style: StyleInterManager.bold20.copyWith(
-                  color: ColorsManager.white,
+                "Success",
+                style: StyleInterManager.regular20.copyWith(
+                  color: ColorsManager.yellowF6,
                 ),
               ),
               content: Text(
-                "Account Deleted",
-                style: StyleInterManager.regular16.copyWith(
-                  color: ColorsManager.white,
+                "Account deleted successfully ✅",
+                style: StyleInterManager.bold20.copyWith(
+                  color: ColorsManager.yellowF6,
                 ),
               ),
               actions: [
-                CustomTextButton(
-                  text: context.appLocalizations!.ok,
-                  onPressed: () => Navigator.pushReplacementNamed(
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      RoutesManager.loginView,
+                      (route) => false,
+                    );
+                  },
+                  child: Text(
+                    context.appLocalizations!.ok,
+                    style: StyleInterManager.regular20.copyWith(
+                      color: ColorsManager.yellowF6,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        } else if (state is DeleteProfileFailure) {
+          showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+              backgroundColor: ColorsManager.black28,
+              title: Text(
+                context.appLocalizations!.error,
+                style: StyleInterManager.regular20.copyWith(
+                  color: ColorsManager.yellowF6,
+                ),
+              ),
+              content: Text(
+                state.errorMessage,
+                style: StyleInterManager.bold20.copyWith(
+                  color: ColorsManager.yellowF6,
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pushNamedAndRemoveUntil(
                     context,
                     RoutesManager.loginView,
+                    (route) => false,
+                  ),
+                  child: Text(
+                    context.appLocalizations!.ok,
+                    style: StyleInterManager.regular20.copyWith(
+                      color: ColorsManager.yellowF6,
+                    ),
                   ),
                 ),
               ],
             ),
           );
         }
+      },
+      builder: (context, state) {
         return Scaffold(
           appBar: CustomEditProfileAppBar(),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
               key: EditProfileCubit.get(context).formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: ListView(
                 children: [
                   SizedBox(height: 20.h),
                   CustomPickAvatars(
@@ -124,8 +165,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ),
                     ),
                   ),
-                  Spacer(),
-                  SizedBox(height: 20.h),
+
+                  SizedBox(height: 40.h),
                   state is DeleteProfileLoading
                       ? Center(
                           child: CircularProgressIndicator(
@@ -144,7 +185,10 @@ class _EditProfileViewState extends State<EditProfileView> {
                               ConstantsManager.isLoggedInKey,
                               false,
                             );
-                            EditProfileCubit.get(context).deleteAccount();
+                            await EditProfileCubit.get(context).deleteAccount();
+                            await EditProfileCubit.get(
+                              context,
+                            ).deleteAccountWithGoogle();
                           },
                         ),
                   SizedBox(height: 20.h),

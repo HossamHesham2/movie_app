@@ -85,11 +85,11 @@ class _CustomPickAvatarsState extends State<CustomPickAvatars> {
             );
           },
           child: CircleAvatar(
-            radius: 70.r,
+
+            radius: 50.r,
             child: Image.asset(
               avatar ?? PngManager.avatar1,
-              width: double.infinity,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
         );

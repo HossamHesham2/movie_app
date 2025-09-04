@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/Features/auth/presentation/login/cubit/login_cubit.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_history_list.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_tab_bar_text.dart';
 import 'package:movie_app/Features/movie/tabs/profile/presentation/widget/custom_watch_list.dart';
@@ -108,7 +109,15 @@ class _ProfileViewState extends State<ProfileView> {
                                 ConstantsManager.isLoggedInKey,
                                 false,
                               );
+                              await prefs.setString(
+                                ConstantsManager.tokenKey,
+                                "",
+                              );
+
+                              // sign out from Firebase
                               await FirebaseAuth.instance.signOut();
+                              await LoginCubit.get(context).signOutGoogle();
+
                               showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
