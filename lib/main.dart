@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:movie_app/Features/auth/presentation/login/cubit/login_cubit.dart';
 import 'package:movie_app/Features/auth/presentation/register/cubit/register_cubit.dart';
@@ -25,6 +26,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter();

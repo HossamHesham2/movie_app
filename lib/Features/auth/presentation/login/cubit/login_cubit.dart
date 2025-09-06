@@ -85,30 +85,11 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<bool> signInWithGoogle() async {
-    emit(LoginLoading());
-
+    emit(LoginWithGoogleLoading());
+    final prefs = await SharedPreferences.getInstance();
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final GoogleSignIn googleSignIn = GoogleSignIn.instance;
-
-      await googleSignIn.initialize();
-
-      final authClient = googleSignIn.authorizationClient;
-      final authorization = await authClient.authorizationForScopes([
-        'email',
-        'profile',
-      ]);
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: authorization?.accessToken,
-        idToken: authorization?.accessToken
-      );
-
-      final firebaseUser = await FirebaseAuth.instance.signInWithCredential(
-        credential,
-      );
-      final user = firebaseUser.user;
-
+      final userCredential = await authRepository.signInWithGoogle();
+      final user = userCredential.user;
       if (user != null) {
         final token = await user.getIdToken(true);
         await prefs.setString(ConstantsManager.tokenKey, token!);
@@ -129,27 +110,29 @@ class LoginCubit extends Cubit<LoginState> {
           value: userModel.toJson(),
         );
 
-        emit(LoginSuccess(user.uid));
+        emit(LoginWithGoogleSuccess(user.uid));
         return true;
       } else {
-        emit(LoginFailure('Google sign-in failed.'));
+        emit(LoginWithGoogleFailure('Google sign-in failed.'));
         return false;
       }
     } on FirebaseAuthException catch (e) {
       emit(LoginFailure(_getErrorMessage(e)));
-      return false;
     } catch (e) {
       emit(LoginFailure('Unexpected error: ${e.toString()}'));
-      return false;
     }
+    return false;
   }
 
   Future<void> signOutGoogle() async {
+    emit(SignOutWithGoogleLoading());
     final googleSignIn = GoogleSignIn.instance;
 
     try {
       await googleSignIn.signOut();
       await googleSignIn.disconnect();
+      emit(SignOutWithGoogleSuccess());
+
     } catch (e) {
       debugPrint("Google sign out error: $e");
     }
