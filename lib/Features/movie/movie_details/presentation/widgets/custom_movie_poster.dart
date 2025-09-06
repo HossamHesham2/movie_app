@@ -85,12 +85,6 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                   BlocConsumer<MovieDetailsCubit, MovieDetailsState>(
                     listener: (context, state) {},
                     builder: (context, state) {
-                      bool isSaved = false;
-                      if (state is AddedWatchListSuccess) {
-                        isSaved = state.isAdded;
-                      } else if (state is CheckWatchListSuccess) {
-                        isSaved = state.isSaved;
-                      }
                       return state is AddedWatchListLoading
                           ? Center(
                               child: Container(
@@ -111,7 +105,7 @@ class _CustomMoviePosterState extends State<CustomMoviePoster> {
                               icon: SvgPicture.asset(
                                 SvgsManager.favIcon,
 
-                                color: isSaved
+                                color: MovieDetailsCubit.get(context).isSaved
                                     ? ColorsManager.yellowFB
                                     : ColorsManager.white,
                               ),

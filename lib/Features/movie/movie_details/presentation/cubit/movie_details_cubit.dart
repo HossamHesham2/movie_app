@@ -12,6 +12,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
   MovieDetailsRepository movieDetailsRepository;
   GetMovieDetailsResponse? getMovieDetailsResponse;
   GetMovieSuggestionsResponse? getMovieSuggestionsResponse;
+  bool isSaved = false;
 
   MovieDetailsCubit(this.movieDetailsRepository) : super(MovieDetailsInitial());
 
@@ -56,6 +57,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
       final isAdded = await movieDetailsRepository.toggleWatchlist(
         movie: movie,
       );
+      isSaved = isAdded;
       emit(AddedHistoryListSuccess(isAdded));
     } catch (e) {
       emit(AddedHistoryListFailure(e.toString()));
@@ -64,6 +66,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
 
   void checkWatchlist({required int? movieId}) async {
     final doc = await movieDetailsRepository.checkWatchlist(movieId: movieId!);
+    isSaved = doc.exists;
     emit(CheckWatchListSuccess(doc.exists));
   }
 
@@ -73,6 +76,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
     );
     emit(CheckHistoryListSuccess(doc.exists));
   }
+
   void addToHistoryList({required Movie movie}) async {
     try {
       await movieDetailsRepository.addToHistoryList(movie: movie);
@@ -80,5 +84,4 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
       print("Error adding to historyList: $e");
     }
   }
-
 }
