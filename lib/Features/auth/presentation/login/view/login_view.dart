@@ -30,13 +30,16 @@ class _LoginViewState extends State<LoginView> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginFailure) {
+          print(state.errMessage);
           showDialog(
             context: context,
             builder: (context) => AlertDialog(
               backgroundColor: ColorsManager.black12,
               title: Text(
                 context.appLocalizations!.error,
-                style: StyleInterManager.bold20.copyWith(color: ColorsManager.white),
+                style: StyleInterManager.bold20.copyWith(
+                  color: ColorsManager.white,
+                ),
               ),
               content: Text(
                 state.errMessage,
@@ -51,6 +54,12 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ],
             ),
+          );
+        } else if (state is LoginWithGoogleSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            RoutesManager.mainLayoutView,
+            (route) => false,
           );
         } else if (state is LoginSuccess) {
           Navigator.pushNamedAndRemoveUntil(
@@ -142,9 +151,7 @@ class _LoginViewState extends State<LoginView> {
                               borderColor: ColorsManager.yellowF6,
                               textColor: ColorsManager.black28,
                               onPressed: () async {
-                                await LoginCubit.get(
-                                  context,
-                                ).login();
+                                await LoginCubit.get(context).login();
                               },
                             ),
                       SizedBox(height: 20.h),
@@ -190,20 +197,28 @@ class _LoginViewState extends State<LoginView> {
                       ),
                       SizedBox(height: 20.h),
                       // TODO : SignIn With Google Button
-                      CustomElevatedButton(
-                        text: context.appLocalizations!.login_with_google,
-                        prefixWidget: Icon(
-                          FontAwesomeIcons.google,
-                          color: ColorsManager.black28,
-                          size: 25.sp,
-                        ),
-                        backgroundColor: ColorsManager.yellowF6,
-                        borderColor: ColorsManager.yellowF6,
-                        textColor: ColorsManager.black28,
-                        onPressed: () async{
-                         await LoginCubit.get(context).signInWithGoogle();
-                        },
-                      ),
+                      state is LoginWithGoogleLoading
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: ColorsManager.yellowF6,
+                              ),
+                            )
+                          : CustomElevatedButton(
+                              text: context.appLocalizations!.login_with_google,
+                              prefixWidget: Icon(
+                                FontAwesomeIcons.google,
+                                color: ColorsManager.black28,
+                                size: 25.sp,
+                              ),
+                              backgroundColor: ColorsManager.yellowF6,
+                              borderColor: ColorsManager.yellowF6,
+                              textColor: ColorsManager.black28,
+                              onPressed: () async {
+                                await LoginCubit.get(
+                                  context,
+                                ).signInWithGoogle();
+                              },
+                            ),
                       SizedBox(height: 20.h),
                       // TODO : Language Toggle
                       CustomLanguageToggle(),

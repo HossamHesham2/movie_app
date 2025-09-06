@@ -186,9 +186,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                               false,
                             );
                             await EditProfileCubit.get(context).deleteAccount();
-                            await EditProfileCubit.get(
-                              context,
-                            ).deleteAccountWithGoogle();
+
                           },
                         ),
                   SizedBox(height: 20.h),

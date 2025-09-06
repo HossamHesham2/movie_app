@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:movie_app/Features/auth/domain/repositories/auth_repository.dart';
+
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,7 +38,6 @@ class AuthRepositoryImpl implements AuthRepository {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await credential.user?.sendEmailVerification();
-
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -59,6 +61,29 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     } catch (e) {
       throw Exception('Unexpected error: $e');
+    }
+  }
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+
+  @override
+  Future<UserCredential> signInWithGoogle() async {
+    try {
+      await _googleSignIn.initialize(
+        serverClientId:
+            dotenv.env["SERVER_CLINT_ID"],
+      );
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
+
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } on Exception {
+      rethrow;
     }
   }
 }
